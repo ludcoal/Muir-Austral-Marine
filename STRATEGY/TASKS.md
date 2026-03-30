@@ -1,0 +1,710 @@
+# 📋 TASKS - MUIR AUSTRAL MARINE
+**Sistema de Email + CRM + Lead Generation**  
+**Última actualización:** 24 de Marzo, 2026 (13:00 UTC+11:00)  
+**Dominio:** muiraustralmarine.com
+
+**📖 DOCUMENTOS DE REFERENCIA:**
+- `README.md` - Visión general y estructura del proyecto
+- `LEAD_STRATEGY.md` - Estrategia completa + pipeline de 6 steps + target audience
+- `OUTREACH/OUTREACH_TEMPLATES.md` - Templates de emails (presentación, follow-ups, breakup)
+- `CONFIG/Credenciales.md` - API keys y credenciales (NO COMPARTIR)
+- `DATA/leads_info.md` - Información sobre leads y fuentes
+
+---
+
+## 🎯 LEYENDA DE ESTADOS
+
+- `[ ]` - Pendiente
+- `[→]` - En progreso  
+- `[✓]` - Completado
+- `[⏸]` - Bloqueado/En espera
+- `[!]` - Prioridad alta
+
+## 👤 RESPONSABILIDADES
+
+**TÚ (Ludwig):**
+- 🔧 Setup manual (crear cuentas, habilitar APIs, configurar credenciales)
+- 📋 Decisiones de negocio (qué clasificar, qué priorizar)
+- ✅ Validación y testing (revisar resultados, aprobar cambios)
+- 📧 Acciones en plataformas externas (Gmail, GitHub, GCP Console)
+
+**YO (Cascade):**
+- 💻 Escribir código (Python, FastAPI, scripts)
+- 🔄 Crear workflows (N8N, GitHub Actions)
+- 📚 Documentación técnica (ARCHITECTURE.md, API docs)
+- 🧪 Testing automático (unit tests, integration tests)
+
+---
+
+## 📊 PROGRESO GENERAL
+
+**FASE 1 - Email + CRM (MVP Básico):** 9/15 tareas  
+**FASE 2 - Presencia Digital:** 0/5 tareas  
+**FASE 3 - Sistema Extracción Leads (PRIORIDAD):** 3/6 tareas  
+**FASE 4 - Lead Generation Automatizado:** 0/8 tareas (futuro)  
+**Total:** 12/34 tareas completadas (35%)
+
+---
+
+# 🔥 FASE 1: EMAIL + CRM SETUP
+
+**Objetivo:** Sistema funcional para outreach manual + CRM básico  
+**Referencia:** Ver `LEAD_STRATEGY.md` para arquitectura completa y flujo Lead Management → Client Management
+
+## 1.0 Configuración de Subdominios para Cold Outreach (FUTURO)
+
+**Referencia:** Ver `LEAD_STRATEGY.md` sección "Proteger Dominio Principal"  
+**Nota:** Implementar después de warmup del dominio principal
+
+- `[ ]` Decidir nombre de subdominio (outreach/sales/latam.muiraustralmarine.com)
+- `[ ]` Crear subdominio en Namecheap (Advanced DNS)
+- `[ ]` Configurar MX, SPF, DKIM, DMARC para subdominio
+- `[ ]` Activar subdominio en Google Workspace
+- `[ ]` Crear cuentas de email en subdominio
+- `[ ]` Warmup separado para cuentas de subdominio (14 días)
+
+## 1.1 Google Workspace + DNS Configuration (Dominio Principal)
+
+- `[✓]` Configurar MX record en Namecheap (smtp.google.com)
+- `[✓]` Agregar SPF record (v=spf1 include:_spf.google.com ~all)
+- `[✓]` DKIM configurado automáticamente por Google
+- `[✓]` Agregar DMARC record (_dmarc)
+- `[ ]` **[!]** Test de email completo (verificar SPF/DKIM/DMARC PASS en headers)
+- `[ ]` Verificar en MXToolbox (opcional)
+
+## 1.2 Google Workspace - Usuarios y Configuración
+
+- `[✓]` Activar cuenta: ludwig@muiraustralmarine.com
+- `[✓]` Crear cuenta: [socio]@muiraustralmarine.com
+- `[✓]` Verificar que socio puede hacer login
+- `[✓]` Test de envío/recepción entre Ludwig y Socio
+- `[✓]` Verificar DNS propagado para ambos (headers SPF/DKIM/DMARC)
+- `[ ]` Activar 2FA para ambas cuentas
+- `[✓]` Configurar recovery email/phone
+- `[✓]` Configurar firmas de email profesional (Ludwig y Socio)
+  - **Referencia:** Ver `OUTREACH/OUTREACH_TEMPLATES.md` para formato de firma
+
+## 1.3 Búsqueda de Contactos en LinkedIn
+
+**Referencia:** Ver `LEAD_STRATEGY.md` Step 4 del pipeline para estrategia de búsqueda
+
+- `[ ]` **[!]** Investigar herramientas gratuitas para LinkedIn (Sales Navigator trial, Hunter.io, Apollo.io)
+- `[ ]` Decidir cuál usar para búsqueda inicial
+
+## 1.4 Email Warmup Strategy
+
+**Referencia:** Ver `LEAD_STRATEGY.md` para calendario detallado de warmup
+
+- `[ ]` **[!]** Semana 1: Días 1-7 (5-40 emails/día, incremento gradual)
+- `[ ]` Semana 2: Días 8-14 (50-100 emails/día)
+- `[ ]` Monitorear métricas (bounce rate, spam complaints, open rate)
+- `[ ]` Evaluar herramientas de warmup (Warmup Inbox, GMass, Instantly) - opcional
+
+## 1.5 Attio CRM Setup
+
+**Referencia:** Ver `LEAD_STRATEGY.md` para estructura de datos completa y criterios de entrada a Attio
+
+- `[✓]` Crear workspace en Attio (ludwig@muiraustralmarine.com)
+- `[✓]` Invitar socio ([socio]@muiraustralmarine.com)
+- `[✓]` Crear listas: Leads, Companies, Deals, Interactions
+- `[ ]` Configurar atributos para cada lista (ver LEAD_STRATEGY.md para campos detallados)
+- `[ ]` Configurar vistas (Kanban, Table, Calendar, Hot Leads)
+
+## 1.6 Sync de Gmail con Attio
+
+**NOTA IMPORTANTE - Cómo funciona Attio:**
+- Attio NO es un cliente de email como Gmail
+- NO hay "Inbox" global en Attio
+- Los emails aparecen en la timeline de cada Person/Company
+- Seguir usando Gmail para leer/gestionar emails
+- Usar Attio para ver historial organizado por contacto/empresa
+
+**Tareas:**
+- `[✓]` Conectar ludwig@muiraustralmarine.com a Attio
+- `[✓]` Conectar [socio]@muiraustralmarine.com a Attio
+- `[ ]` **[!]** Activar auto-creación de Companies (Settings → Email and Calendar)
+- `[ ]` Verificar auto-creación de People activa
+- `[ ]` Habilitar envío de emails desde Attio
+- `[ ]` Configurar tracking de emails (opens, replies)
+- `[ ]` Decidir qué emails sincronizar (todos/solo contactos/por labels)
+- `[ ]` Configurar calendar sync (opcional)
+
+## 1.7 Automatizaciones Básicas en Attio (FUTURO)
+
+**Nota:** Implementar después de entender el proceso completo de incorporación de clientes  
+**Referencia:** Ver `LEAD_STRATEGY.md` para workflows detallados
+
+- `[ ]` Workflow 1: Auto-crear Deal cuando lead responde positivamente
+- `[ ]` Workflow 2: Notificación de respuesta positiva
+- `[ ]` Workflow 3: Auto-crear Interaction por email
+- `[ ]` Workflow 4: Recordatorio de follow-up (deals sin actividad 5+ días)
+- `[ ]` Workflow 5: Asignación automática round-robin
+- `[ ]` Workflow 6: Actualizar stage de Deal por palabras clave
+
+## 1.8 Testing Completo del Sistema
+
+- `[ ]` **[!]** Test 1: Envío/recepción emails entre Ludwig y Socio (verificar sync bidireccional en Attio)
+- `[ ]` **[!]** Test 2: Auto-creación de Company (enviar email a dominio corporativo externo)
+- `[ ]` Test 3: Workflows funcionando (si ya están configurados)
+- `[ ]` **[!]** Test 4: Envío desde Attio (verificar se envía vía Gmail y crea Interaction)
+- `[ ]` Test 5: Templates en Attio (verificar variables se reemplazan)
+
+## 1.9 Proceso Manual de Outreach (MVP)
+
+**Referencia:** Ver `OUTREACH/OUTREACH_TEMPLATES.md` para todos los templates de email
+
+- `[ ]` Documentar workflow diario de outreach
+- `[ ]` Crear spreadsheet de tracking diario (emails enviados, respuestas, meetings)
+- `[ ]` Definir división de trabajo con socio (territorios/industrias)
+
+---
+
+# 🌐 FASE 2: PRESENCIA DIGITAL
+
+**Objetivo:** Establecer presencia online profesional
+
+- `[ ]` Crear LinkedIn empresa Muir Austral Marine
+- `[ ]` Crear landing page muiraustralmarine.com (1 página simple)
+- `[ ]` Crear Instagram @muiraustralmarine
+- `[ ]` Setup sistema de publicación multi-plataforma
+- `[ ]` Content calendar 1 mes
+
+---
+
+# 🔧 FASE 3: SISTEMA DE EXTRACCIÓN DE LEADS (PRIORIDAD)
+
+**Objetivo:** Ejecutar pipeline de 6 steps para generar leads calificados  
+**Referencia:** Ver `LEAD_STRATEGY.md` para diagrama completo del pipeline y target audience
+
+**Recursos Creados:**
+- `NANO_BANANA_PROMPT_FRAMEWORK.md` - Framework para AI video generation
+- `CONTENT/VIDEO_AD_CATAMARAN_WATERFALL.md` - Video ad documentation
+- Google Sheets estructura (5 tabs): Raw_Companies, Enriched_Leads, LinkedIn_Contacts, Ready_for_Attio, KPIs_Dashboard
+
+## 3.1 Ejecutar Pipeline de 6 Steps con MundoMaritimo.net
+
+- `[✓]` **[!]** STEP 1: Extraer 96 astilleros de MundoMaritimo.net → CSV (mundomaritimo_astilleros.csv)
+  - **Completado:** 20 de Marzo, 2026 - Script Python con requests + BeautifulSoup
+  - **Resultado:** 96 empresas extraídas (nombre, dirección, teléfono, país)
+  - **Archivo:** `SCRIPTS/mundomaritimo_astilleros.csv`
+- `[→]` **[!]** STEP 2: Buscar websites + contactos (N8N + Perplexity)
+  - **En progreso:** 21-22 de Marzo, 2026
+  - **Workflow N8N creado:** Perplexity API + Code parser
+  - **Google Sheets lista:** 5 tabs (Raw_Companies, Enriched_Leads, LinkedIn_Contacts, Ready_for_Attio, KPIs_Dashboard) ✅
+  - **Test exitoso:** ASMAR (website + 2 emails + 7 phones + summary)
+  - **Pendiente:** Conectar Google Sheets al workflow, implementar loop para 96 empresas
+- `[ ]` **[!]** STEP 3: Completar enrichment de 96 empresas
+- `[✓]` STEP 4: Buscar contactos específicos en LinkedIn (N8N + Apify)
+  - **Completado:** 23 de Marzo, 2026
+  - **Workflow N8N:** LinkedIn scraper con Apify integration
+  - **Output:** Datos a Google Sheets Tab 3 (LinkedIn_Contacts)
+- `[ ]` **[!]** STEP 5: Importar a Attio CRM (workflow N8N automático)
+  - **Planeado:** Workflow N8N con trigger en Google Sheets Tab 4
+  - **Funcionalidad:** Auto-crear Companies + Persons en Attio
+- `[ ]` **[!]** STEP 6: Iniciar outreach (emails + llamadas)
+
+## 3.2 Sistema Escalable de Leads
+
+- `[ ]` Crear workflow flexible: nombres → websites → scrape → contactos
+- `[ ]` Sistema de calificación de leads
+- `[ ]` Discovery continuo de fuentes (directorios, asociaciones, trade shows)
+- `[ ]` Proceso de verificación de calidad
+
+---
+
+# 🔧 FASE 4: LEAD GENERATION AUTOMATIZADO (FUTURO)
+
+**Objetivo:** Sistema automatizado de scraping, limpieza y almacenamiento de leads  
+**Referencia:** Ver `LEAD_STRATEGY.md` para arquitectura de base de datos y workflows N8N
+
+## 4.1 Supabase Setup
+
+- `[ ]` Crear cuenta y proyecto en Supabase
+- `[ ]` Seleccionar región (South America o US East)
+- `[ ]` Guardar credenciales (Project URL, API Keys)
+- `[ ]` Ejecutar SQL para crear tablas (raw_leads, scraping_jobs)
+- `[ ]` Configurar Row Level Security (RLS)
+- `[ ]` Testear API (INSERT, SELECT, UPDATE)
+
+## 4.2 Supabase Dashboard Setup
+
+- `[ ]` Configurar vistas en Table Editor (leads nuevos, calificados, por fuente)
+- `[ ]` Evaluar si necesario dashboard custom (Retool/Budibase)
+- `[ ]` Si sí: conectar a Supabase y diseñar interfaz
+
+## 4.3 N8N Templates - Scrapers
+
+**Referencia:** Ver `LEAD_STRATEGY.md` para configuración detallada de scrapers
+
+- `[ ]` **[!]** Google Maps Scraper: buscar template N8N, adaptar para Supabase, configurar búsquedas
+- `[ ]` LinkedIn Scraper: evaluar opciones (Phantombuster, Sales Navigator API), adaptar para Supabase
+- `[ ]` Website Scraper: configurar para extraer contactos de websites
+
+## 4.4 N8N Workflows - Lead Processing
+
+**Referencia:** Ver `LEAD_STRATEGY.md` para lógica detallada de workflows
+
+- `[ ]` **[!]** Workflow: Lead Cleaning & Deduplication (verificar duplicados, normalizar datos, lead scoring)
+- `[ ]` Workflow: Lead Enrichment (scrape website, enrich con LinkedIn) - opcional
+
+## 4.5 Workflow: Supabase → Attio Sync
+
+**Referencia:** Ver `LEAD_STRATEGY.md` para criterios de sincronización
+
+- `[ ]` **[!]** Crear workflow N8N (trigger cada 1 hora)
+- `[ ]` Configurar credenciales Attio API
+- `[ ]` Testear con 5 leads de prueba
+- `[ ]` Verificar sync correcto en Attio
+
+## 4.6 Email Automation con N8N (MUY FUTURO)
+
+**Nota:** Solo activar después de warmup completo  
+**Referencia:** Ver `LEAD_STRATEGY.md` para secuencias de email detalladas
+
+- `[ ]` Workflow: Automated Email Sequence (4 emails con delays)
+- `[ ]` Workflow: Response Handler (pausar secuencia, notificar)
+- `[ ]` Configurar Gmail API credentials
+- `[ ]` Testear con 1 lead de prueba
+
+## 4.7 Reporting y Scheduled Jobs
+
+- `[ ]` Crear vistas SQL para métricas en Supabase
+- `[ ]` Evaluar Power BI (opcional)
+- `[ ]` Scheduled Jobs: Daily scraping, Lead cleaning, Sync to Attio, Weekly reports
+
+---
+
+# 🏗️ FASE 5: GOOGLE CLOUD INFRASTRUCTURE (PRIORIDAD)
+
+**Objetivo:** Deployar servicios FastAPI a Google Cloud Run con CI/CD automático
+
+**Stack Técnico:**
+- GitHub: Source of truth (código + docs)
+- Google Cloud Build: CI/CD pipeline (GRATIS - 120 builds/día)
+- Google Cloud Run: Microservicios FastAPI
+- Vertex AI (Gemini): Enrichment, scoring, personalization
+- Cloud SQL (PostgreSQL): CRM database
+- Vertex AI Vector Search: RAG, semantic search
+- N8N: Orquestación de workflows
+
+**Documentación:**
+- `ARCHITECTURE.md` - Arquitectura completa del sistema ✅
+- `GOOGLE_CLOUD_SETUP.md` - Guía paso a paso de setup ✅
+- `cloudbuild.yaml` - Configuración CI/CD ✅
+
+---
+
+## 5.1 Google Cloud Project Setup
+
+**TÚ:**
+- `[ ]` **[!]** Instalar Google Cloud SDK (https://cloud.google.com/sdk/docs/install)
+- `[ ]` **[!]** Ejecutar `gcloud init` y login
+- `[ ]` **[!]** Crear proyecto GCP: `gcloud projects create muir-austral-marine`
+- `[ ]` **[!]** Configurar proyecto: `gcloud config set project muir-austral-marine`
+- `[ ]` **[!]** Habilitar billing en Google Cloud Console (necesario para free tier)
+
+**YO:**
+- `[✓]` Crear ARCHITECTURE.md (documentación técnica)
+- `[✓]` Crear GOOGLE_CLOUD_SETUP.md (guía de deploy)
+- `[✓]` Crear cloudbuild.yaml (CI/CD config)
+
+---
+
+## 5.2 Habilitar APIs de Google Cloud
+
+**TÚ:**
+- `[ ]` **[!]** Ejecutar comandos para habilitar APIs:
+  ```bash
+  gcloud services enable run.googleapis.com
+  gcloud services enable cloudbuild.googleapis.com
+  gcloud services enable secretmanager.googleapis.com
+  gcloud services enable aiplatform.googleapis.com
+  gcloud services enable sqladmin.googleapis.com
+  ```
+
+---
+
+## 5.3 Configurar Secrets (API Keys)
+
+**TÚ:**
+- `[ ]` **[!]** Crear secret para Gemini API:
+  ```bash
+  echo -n "YOUR_GEMINI_API_KEY" | \
+    gcloud secrets create gemini-api-key --data-file=-
+  ```
+- `[ ]` **[!]** Crear secret para Perplexity API:
+  ```bash
+  echo -n "YOUR_PERPLEXITY_API_KEY" | \
+    gcloud secrets create perplexity-api-key --data-file=-
+  ```
+- `[ ]` **[!]** Dar permisos a Cloud Run para acceder secrets:
+  ```bash
+  PROJECT_NUMBER=$(gcloud projects describe muir-austral-marine --format='value(projectNumber)')
+  
+  gcloud secrets add-iam-policy-binding gemini-api-key \
+    --member="serviceAccount:${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" \
+    --role="roles/secretmanager.secretAccessor"
+  
+  gcloud secrets add-iam-policy-binding perplexity-api-key \
+    --member="serviceAccount:${PROJECT_NUMBER}-compute@developer.gserviceaccount.com" \
+    --role="roles/secretmanager.secretAccessor"
+  ```
+
+---
+
+## 5.4 Deploy Enrichment Service (Primera vez - Manual)
+
+**YO:**
+- `[✓]` Crear Enrichment Service (FastAPI + Gemini + Perplexity)
+- `[✓]` Crear Dockerfile
+- `[✓]` Crear requirements.txt
+- `[✓]` Testear localmente ✅
+
+**TÚ:**
+- `[ ]` **[!]** Deploy a Cloud Run:
+  ```bash
+  cd "d:\Muir Austral Repo\Muir Sudamerica\services\enrichment"
+  
+  gcloud run deploy enrichment-service \
+    --source . \
+    --platform managed \
+    --region us-central1 \
+    --allow-unauthenticated \
+    --set-secrets="GEMINI_API_KEY=gemini-api-key:latest,PERPLEXITY_API_KEY=perplexity-api-key:latest" \
+    --memory 512Mi \
+    --timeout 300
+  ```
+- `[ ]` **[!]** Copiar URL del servicio (output del comando anterior)
+- `[ ]` **[!]** Testear servicio:
+  ```bash
+  curl https://enrichment-service-xxx.run.app/
+  ```
+
+---
+
+## 5.5 Setup CI/CD con Cloud Build
+
+**TÚ:**
+- `[ ]` **[!]** Dar permisos a Cloud Build:
+  ```bash
+  PROJECT_NUMBER=$(gcloud projects describe muir-austral-marine --format='value(projectNumber)')
+  
+  gcloud projects add-iam-policy-binding muir-austral-marine \
+    --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
+    --role="roles/run.admin"
+  
+  gcloud projects add-iam-policy-binding muir-austral-marine \
+    --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
+    --role="roles/iam.serviceAccountUser"
+  ```
+- `[ ]` **[!]** Conectar GitHub a Cloud Build:
+  ```bash
+  gcloud builds triggers create github \
+    --repo-name=Muir-Austral-Repo \
+    --repo-owner=Ludo186A \
+    --branch-pattern="^main$" \
+    --build-config=cloudbuild.yaml
+  ```
+- `[ ]` **[!]** Testear CI/CD: hacer cambio en código → commit → push → verificar auto-deploy
+
+**YO:**
+- `[✓]` Crear cloudbuild.yaml (configuración CI/CD)
+
+---
+
+## 5.6 Setup Cloud SQL (PostgreSQL para CRM)
+
+**TÚ:**
+- `[ ]` Crear instancia Cloud SQL:
+  ```bash
+  gcloud sql instances create muir-crm-db \
+    --database-version=POSTGRES_15 \
+    --tier=db-f1-micro \
+    --region=us-central1 \
+    --root-password=TU_PASSWORD_SEGURO
+  ```
+- `[ ]` Crear database:
+  ```bash
+  gcloud sql databases create muir_crm --instance=muir-crm-db
+  ```
+- `[ ]` Crear usuario:
+  ```bash
+  gcloud sql users create crm_user \
+    --instance=muir-crm-db \
+    --password=OTRO_PASSWORD_SEGURO
+  ```
+
+---
+
+## 5.7 Deploy Twenty CRM (Self-hosted)
+
+**TÚ:**
+- `[ ]` Deploy Twenty CRM a Cloud Run:
+  ```bash
+  gcloud run deploy twenty-crm \
+    --image twentyhq/twenty:latest \
+    --platform managed \
+    --region us-central1 \
+    --allow-unauthenticated \
+    --set-env-vars "DATABASE_URL=postgresql://crm_user:password@/muir_crm?host=/cloudsql/muir-austral-marine:us-central1:muir-crm-db" \
+    --add-cloudsql-instances muir-austral-marine:us-central1:muir-crm-db \
+    --memory 1Gi
+  ```
+- `[ ]` Acceder a CRM UI y configurar
+
+---
+
+## 5.8 Migrar n8n a Cloud Run (Opcional)
+
+**TÚ:**
+- `[ ]` Deploy n8n a Cloud Run:
+  ```bash
+  gcloud run deploy n8n \
+    --image n8nio/n8n:latest \
+    --platform managed \
+    --region us-central1 \
+    --allow-unauthenticated \
+    --set-env-vars "N8N_BASIC_AUTH_ACTIVE=true,N8N_BASIC_AUTH_USER=admin,N8N_BASIC_AUTH_PASSWORD=TU_PASSWORD" \
+    --memory 1Gi
+  ```
+- `[ ]` Migrar workflows de Hostinger a Cloud Run
+
+---
+
+## 5.9 Crear Scraping Service
+
+**YO:**
+- `[ ]` Crear Scraping Service (FastAPI + ScrapeGraphAI)
+- `[ ]` Integrar scrapers: MundoMarítimo, Google Maps, Social Media
+- `[ ]` Crear Dockerfile y requirements.txt
+- `[ ]` Testear localmente
+
+**TÚ:**
+- `[ ]` Deploy a Cloud Run (mismo proceso que enrichment)
+
+---
+
+## 5.10 Crear Personalization Service
+
+**YO:**
+- `[ ]` Crear Personalization Service (FastAPI + Gemini)
+- `[ ]` Templates de email personalizados
+- `[ ]` Scoring de personalización
+- `[ ]` Testear localmente
+
+**TÚ:**
+- `[ ]` Deploy a Cloud Run
+
+---
+
+## 5.11 Setup Vertex AI Vector Search (RAG)
+
+**TÚ:**
+- `[ ]` Crear bucket en Cloud Storage:
+  ```bash
+  gsutil mb -l us-central1 gs://muir-austral-marine-vectors
+  ```
+- `[ ]` Crear índice vectorial para embeddings
+- `[ ]` Testear semantic search
+
+**YO:**
+- `[ ]` Crear script para generar embeddings
+- `[ ]` Integrar con enrichment service
+
+---
+
+## 5.12 Integrar N8N con Cloud Run Services
+
+**TÚ:**
+- `[ ]` Configurar HTTP Request nodes en N8N
+- `[ ]` Apuntar a URLs de Cloud Run services
+- `[ ]` Testear workflow completo: Raw Data → Enrichment → CRM
+
+---
+
+## 5.13 Monitoring y Logs
+
+**TÚ:**
+- `[ ]` Acceder a Cloud Console para ver logs
+- `[ ]` Configurar alertas (opcional)
+- `[ ]` Monitorear costos
+
+**YO:**
+- `[ ]` Configurar logging en servicios
+- `[ ]` Crear dashboard de métricas
+
+## 5.3 CI/CD Pipeline (GitHub Actions)
+
+**YO:**
+- `[ ]` **[!]** Crear workflow: test.yml (pytest, pylint, bandit)
+- `[ ]` Crear workflow: deploy.yml (build Docker → Cloud Run)
+- `[ ]` Crear workflow: version.yml (semantic versioning)
+
+**TÚ:**
+- `[ ]` Testear pipeline con cambio dummy (push a GitHub)
+
+## 5.4 Cloud Run API Endpoints
+
+**YO:**
+- `[ ]` **[!]** Crear FastAPI app (main.py)
+- `[ ]` Endpoint: GET /health (health check)
+- `[ ]` Endpoint: POST /classify (clasificar email)
+- `[ ]` Endpoint: POST /label (etiquetar con Vertex AI)
+- `[ ]` Endpoint: POST /embed (generar embeddings)
+- `[ ]` Endpoint: POST /batch-classify (batch processing)
+- `[ ]` Logging y monitoring
+
+**TÚ:**
+- `[ ]` Testear endpoints en Cloud Run Console
+
+## 5.5 Vertex AI Integration
+
+**TÚ:**
+- `[ ]` **[!]** Habilitar Vertex AI API en GCP Console
+- `[ ]` Crear credenciales Vertex AI (si es necesario)
+
+**YO:**
+- `[ ]` Crear prompt para etiquetado (LLM)
+- `[ ]` Crear prompt para clasificación (LLM)
+- `[ ]` Testear con emails de prueba
+- `[ ]` Optimizar prompts para precisión
+
+## 5.6 N8N Cascading Workflows
+
+**TÚ:**
+- `[ ]` **[!]** Configurar credenciales Cloud Run en N8N
+- `[ ]` Configurar credenciales Vertex AI en N8N
+- `[ ]` Configurar credenciales Gmail en N8N
+
+**YO:**
+- `[ ]` Workflow 1: Email Extraction (Gmail → Cloud Run)
+- `[ ]` Workflow 2: Email Labeling (crear dataset con Vertex AI)
+- `[ ]` Workflow 3: Cascading Pipeline (código → ML → Vertex AI)
+  - Etapa 1: Limpiar email (código)
+  - Etapa 2: Clasificar con ML (si confidence > 0.7)
+  - Etapa 3: Clasificar con Vertex AI (si confidence < 0.7)
+- `[ ]` Workflow 4: RAG Building (embeddings + vector store)
+- `[ ]` Workflow 5: Attio Sync (guardar resultados)
+
+**TÚ:**
+- `[ ]` Testear workflows en N8N
+
+## 5.7 Machine Learning Model Training
+
+**TÚ:**
+- `[ ]` **[!]** Proporcionar ~1000-5000 emails históricos para etiquetar
+
+**YO:**
+- `[ ]` Etiquetar emails con Vertex AI (script automático)
+- `[ ]` Feature engineering (TF-IDF, embeddings)
+- `[ ]` Entrenar modelos (Naive Bayes, SVM, Random Forest)
+- `[ ]` Evaluar precisión (accuracy, precision, recall)
+- `[ ]` Guardar modelo entrenado (pickle)
+- `[ ]` Crear script: train_ml_model.py
+
+**TÚ:**
+- `[ ]` Revisar y validar etiquetas generadas (~10%)
+
+## 5.8 RAG (Retrieval-Augmented Generation)
+
+**TÚ:**
+- `[ ]` **[!]** Crear proyecto Supabase (si no existe)
+- `[ ]` Habilitar pgvector extension en Supabase
+
+**YO:**
+- `[ ]` Generar embeddings con Vertex AI
+- `[ ]` Crear índice en Supabase (pgvector)
+- `[ ]` Implementar similarity search
+- `[ ]` Testear búsqueda de preguntas similares
+
+## 5.9 Monitoring y Logging
+
+**TÚ:**
+- `[ ]` **[!]** Acceder a Google Cloud Console para revisar logs
+- `[ ]` Configurar alertas (opcional)
+
+**YO:**
+- `[ ]` Configurar Cloud Logging en código
+- `[ ]` Crear dashboard en Cloud Console
+- `[ ]` Tracking de costos GCP
+
+---
+
+# 🧠 FASE 6: CUSTOMER INTELLIGENCE & REENGAGEMENT (Subproyecto)
+
+**Objetivo:** Análisis de emails históricos + clasificación automática + RAG + KPIs
+
+**Referencia:** Ver `CUSTOMER_INTELLIGENCE/` para documentación completa
+
+## 6.1 Extracción de Emails
+
+- `[ ]` Configurar Gmail API
+- `[ ]` Script: extraer emails históricos de clientes Sudamérica
+- `[ ]` Exportar a CSV (raw_emails/)
+- `[ ]` Validar datos extraídos
+
+## 6.2 Limpieza y Normalización
+
+- `[ ]` Remover HTML/CSS
+- `[ ]` Normalizar caracteres especiales
+- `[ ]` Separar threads de email
+- `[ ]` Extraer metadata (from, to, date, domain, país)
+- `[ ]` Guardar en processed/
+
+## 6.3 Clasificación Automática
+
+- `[ ]` **[!]** Usar Vertex AI para etiquetar (crear dataset)
+- `[ ]` Clasificar por: tipo, tema, sentimiento, urgencia, estado
+- `[ ]` Guardar etiquetas en classifications/
+- `[ ]` Revisar/validar manualmente ~10%
+
+## 6.4 Machine Learning Training
+
+- `[ ]` Feature engineering con datos etiquetados
+- `[ ]` Entrenar modelos (Naive Bayes, SVM)
+- `[ ]` Evaluar precisión
+- `[ ]` Guardar modelo entrenado
+
+## 6.5 RAG Building
+
+- `[ ]` Generar embeddings para cada email
+- `[ ]` Crear índice en Supabase
+- `[ ]` Implementar búsqueda de preguntas similares
+- `[ ]` Testear retrieval
+
+## 6.6 KPIs y Dashboard
+
+- `[ ]` Calcular métricas: total emails, distribución por tipo, sentimiento promedio
+- `[ ]` Crear dashboard (Google Sheets o Metabase)
+- `[ ]` Visualizar top problemas técnicos
+- `[ ]` Visualizar evolución temporal
+
+## 6.7 Recontacto (Futuro)
+
+- `[ ]` Definir estrategia de recontacto
+- `[ ]` Crear templates personalizados
+- `[ ]` Crear workflow N8N para envío
+
+---
+
+# 🔗 RECURSOS ÚTILES
+
+**N8N Templates:**
+- Google Maps Scraper: https://n8n.io/workflows/5385
+- Lead Generation: https://n8n.io/workflows/categories/lead-generation/
+- Attio Integration: https://n8n.io/integrations/attio/
+
+**Documentación:**
+- Supabase: https://supabase.com/docs
+- Attio API: https://developers.attio.com/
+- Gmail API: https://developers.google.com/gmail/api
+- Google Workspace Admin: https://admin.google.com
+
+**Verificación de Email:**
+- MXToolbox: https://mxtoolbox.com/SuperTool.aspx
+- Mail-tester: https://www.mail-tester.com/
+
+---
+
+**Última actualización:** 20 de Marzo, 2026  
+**Próxima revisión:** Después de ejecutar FASE 3 (Pipeline de extracción)
