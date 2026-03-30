@@ -52,6 +52,10 @@ images:
 # Build timeout
 timeout: 1200s
 
+# Logging configuration (required when using custom service account)
+options:
+  logging: CLOUD_LOGGING_ONLY
+
 # Substitutions
 substitutions:
   _SERVICE_NAME: enrichment-service
