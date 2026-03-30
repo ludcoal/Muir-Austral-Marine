@@ -9,45 +9,57 @@
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  GITHUB REPOSITORY (Source of Truth)                        │
-│  └── git push → Trigger automático                          │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
+│  └── git push → Trigger automático                        ## 🏗️ ARQUITECTURA HÍBRIDA
+
+```
 ┌─────────────────────────────────────────────────────────────┐
-│  GOOGLE CLOUD BUILD (CI/CD)                                 │
-│  ├── Build Docker images                                    │
-│  ├── Run tests                                              │
-│  └── Deploy a Cloud Run                                     │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
+│              COMPUTE ENGINE VM (e2-medium)                   │
+│                    Stateful Applications                     │
+├─────────────────────────────────────────────────────────────┤
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  N8N (Docker)                                        │   │
+│  │  - Workflows persistentes                            │   │
+│  │  - Webhooks activos 24/7                             │   │
+│  │  - PostgreSQL database                               │   │
+│  └──────────────────────────────────────────────────────┘   │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  Twenty CRM (Docker)                                 │   │
+│  │  - PostgreSQL + Redis                                │   │
+│  │  - Sesiones persistentes                             │   │
+│  └──────────────────────────────────────────────────────┘   │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  PostgreSQL Database                                 │   │
+│  │  - N8N workflows + executions                        │   │
+│  │  - Twenty CRM data                                   │   │
+│  └──────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+                              ▼
 ┌─────────────────────────────────────────────────────────────┐
-│  CLOUD RUN (Application Layer)                              │
-│  ├── enrichment-service    (FastAPI)                        │
-│  ├── scraping-service      (FastAPI)                        │
-│  ├── personalization-service (FastAPI)                      │
-│  ├── n8n                   (Automation)                     │
-│  └── twenty-crm            (CRM UI)                         │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│  DATA LAYER                                                 │
-│  ├── Cloud SQL (PostgreSQL)  → CRM data, leads, contacts   │
-│  ├── Vertex AI Vector Search → Embeddings, semantic search │
-│  ├── BigQuery                → Analytics, reporting        │
-│  └── Cloud Storage           → Files, exports, backups     │
-└────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────┐
-│  AI LAYER (Vertex AI)                                       │
-│  ├── Gemini API              → Enrichment, scoring         │
-│  ├── Vertex AI Agents        → Conversational AI           │
-│  ├── Vector Search           → RAG, semantic search        │
-│  └── Vertex AI Pipelines     → ML workflows                │
+│                    CLOUD RUN (Stateless APIs)                │
+│                  Auto-scaling + CI/CD                        │
+├─────────────────────────────────────────────────────────────┤
+│  ┌────────────────┐  ┌────────────────┐  ┌──────────────┐  │
+│  │  Enrichment    │  │  Scraping      │  │  Personal.   │  │
+│  │  Service       │  │  Service       │  │  Service     │  │
+│  │  (FastAPI)     │  │  (FastAPI)     │  │  (FastAPI)   │  │
+│  └────────┬───────┘  └────────┬───────┘  └──────┬───────┘  │
+│           │                   │                  │          │
+│           └───────────────────┴──────────────────┘          │
+│                              ▼                               │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  Vertex AI (Gemini) + Perplexity API                │   │
+│  └──────────────────────────────────────────────────────┘   │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │  Cloud Storage (Data Lake)                           │   │
+│  └──────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
 ```
+
+**Ventajas:**
+- ✅ N8N siempre activo (webhooks funcionan)
+- ✅ Twenty CRM con persistencia
+- ✅ APIs en Cloud Run (auto-scaling, CI/CD)
+- ✅ Costo optimizado (~$25/mes VM + Cloud Run casi gratis)
 
 ---
 

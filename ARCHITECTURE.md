@@ -12,23 +12,29 @@ Sistema de generación de leads B2B para empresas marítimas en Sudamérica, con
 
 ## 🏛️ STACK TECNOLÓGICO
 
-### **Backend & Infrastructure**
-- **Google Cloud Platform** (Free Tier)
-  - Vertex AI (Gemini API para AI processing)
-  - Cloud Run (FastAPI services)
-  - Cloud Functions (event-driven tasks)
-  - Cloud Storage (data lake)
-  - Secret Manager (credenciales)
+### **Backend & Infrastructure (Híbrido)**
+- **Compute Engine VM (e2-medium, $25/mes)**
+  - N8N (workflows + webhooks persistentes)
+  - Twenty CRM (PostgreSQL + Redis)
+  - PostgreSQL Database
+  - Docker + docker-compose
   
-### **Automation & Orchestration**
-- **N8N** (Hostinger) - Workflows y orquestación
-- **FastAPI** - APIs para servicios modulares
-- **GitHub** - Source control y CI/CD
+- **Cloud Run (Stateless APIs)**
+  - Enrichment Service (FastAPI)
+  - Scraping Service (FastAPI)
+  - Personalization Service (FastAPI)
+  - Auto-scaling, CI/CD con Cloud Build
+  
+- **Google Cloud Platform**
+  - Vertex AI (Gemini API)
+  - Cloud Storage (data lake)
+  - Secret Manager (API keys)
+  - Cloud Build (CI/CD automático)
 
 ### **Data & Storage**
-- **Google Sheets** - Database temporal y UI
+- **PostgreSQL** (en VM) - N8N + Twenty CRM
 - **Cloud Storage** - Data lake (CSVs, JSONs)
-- **Supabase** (futuro) - Database relacional
+- **Google Sheets** - UI temporal para workflows
 
 ### **AI & Processing**
 - **Vertex AI / Gemini** - Enrichment, scoring, analysis

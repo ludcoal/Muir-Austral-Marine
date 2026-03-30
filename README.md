@@ -68,12 +68,14 @@ Muir Sudamerica/
     └── .gitignore
 ```
 
-### 📖 Cómo Navegar
-- **Punto de entrada:** `README.md` (este archivo)
-- **Estrategia:** `STRATEGY/LEAD_STRATEGY.md`
-- **Tareas:** `STRATEGY/TASKS.md`
-- **Emails:** `OUTREACH/OUTREACH_TEMPLATES.md`
-- **Configuración:** `CONFIG/Credenciales.md` (protegido)
+### 📖 Documentos Principales
+- **README.md** - Este archivo (overview del proyecto)
+- **ARCHITECTURE.md** - Arquitectura técnica completa
+- **GOOGLE_CLOUD_SETUP.md** - Guía de deployment y configuración GCP
+- **LOGBOOK.md** - Registro de actividades y progreso
+- **STRATEGY/LEAD_STRATEGY.md** - Estrategia de leads
+- **STRATEGY/TASKS.md** - Checklist de tareas
+- **OUTREACH/OUTREACH_TEMPLATES.md** - Templates de emails
 
 ---
 
@@ -118,52 +120,43 @@ STEP 6: Outreach y Seguimiento
 
 ## 📈 Progreso Actual
 
-### ✅ FASE 1: EMAIL + CRM SETUP (MVP Básico) - 9/15 tareas
-- ✅ DMARC configurado
-- ✅ Cuenta del socio creada
-- ✅ Attio workspace + sync Gmail
-- ✅ Plantillas de outreach (tono elite, presentación + catálogo)
-- ✅ Pipeline de 6 steps documentado
-- ⏳ Investigar herramientas gratuitas de LinkedIn
-- ⏳ Setup de llamadas (VoIP AU → LATAM)
-- ⏳ Attio automatizaciones (1 workflow simple)
+### ✅ FASE 1: INFRAESTRUCTURA (Completado - 30/03/2026)
+- ✅ Repositorio limpio y organizado (services/, n8n/, data/)
+- ✅ GitHub: https://github.com/ludcoal/Muir-Austral-Marine
+- ✅ Google Cloud SDK instalado
+- ✅ Proyecto GCP creado (muir-austral-marine)
+- ✅ APIs habilitadas (Cloud Run, Build, Secret Manager, Vertex AI)
+- ✅ Secrets configurados (Gemini, Perplexity)
+- ✅ GitHub conectado a Cloud Build
+- ✅ Servicios FastAPI creados (enrichment, scraping)
 
-### ⏳ FASE 2: PRESENCIA DIGITAL - 0/5 tareas
-- LinkedIn empresa
-- Landing page muiraustralmarine.com
-- Instagram @muiraustralmarine
-- Content calendar
+### � FASE 2: DEPLOYMENT (En Progreso)
+- 🔄 Crear trigger Cloud Build (configurando service account)
+- ⏳ Crear VM (e2-medium) para N8N + Twenty CRM + PostgreSQL
+- ⏳ Deploy N8N + PostgreSQL en VM
+- ⏳ Deploy Twenty CRM en VM
+- ⏳ Testear CI/CD: git push → Cloud Run
+- ⏳ Conectar N8N con APIs de Cloud Run
 
-### 🚀 FASE 3: SISTEMA DE EXTRACCIÓN DE LEADS - 2/6 tareas (EN PROGRESO)
-- ✅ **STEP 1:** Extraer 96 astilleros de MundoMarítimo.net (COMPLETADO 20/03/2026)
-  - 96 empresas extraídas a CSV
-  - Campos: nombre, dirección, teléfono, país
-  - Archivo: `SCRIPTS/mundomaritimo_astilleros.csv`
-- 🔄 **STEP 2:** Buscar websites + contactos (EN PROGRESO 21/03/2026)
-  - N8N workflow creado (Perplexity + Code parser)
-  - Google Sheets estructura definida (5 tabs: Raw, Enriched, LinkedIn, Ready_for_Attio, KPIs)
-  - Sistema de tracking y KPIs configurado
-- ⏳ STEP 3: Completar enrichment de 96 empresas
-- ⏳ STEP 4: Búsqueda en LinkedIn (opcional)
-- ⏳ STEP 5: Importar a Attio CRM (workflow N8N automático)
-- ⏳ STEP 6: Iniciar outreach
-
-### ⏳ FASE 4: LEAD GENERATION AUTOMATIZADO (Futuro) - 0/8 tareas
-- Supabase database
-- Workflows N8N avanzados
-- Automatización completa
+### ⏳ FASE 3: LEAD GENERATION (Pendiente)
+- ⏳ Configurar workflows N8N (6 stages)
+- ⏳ Testear pipeline completo end-to-end
+- ⏳ Procesar 96 empresas de MundoMarítimo
+- ⏳ Enrichment con Gemini + Perplexity
+- ⏳ Contact discovery (LinkedIn + Apify)
+- ⏳ Importar a Twenty CRM
+- ⏳ Iniciar outreach
 
 ---
 
 ## 🎯 Próximos Pasos Inmediatos
 
-1. **Investigar herramientas gratuitas de LinkedIn** para buscar contactos (Step 4)
-2. **Buscar N8N templates** para Steps 1, 2, 3, 5
-3. **Crear workflows en N8N** para automatizar extracción
-4. **Ejecutar Step 1** (extraer de MundoMarítimo)
-5. **Ejecutar Steps 2-3** (buscar websites + scraping)
-6. **Importar a Attio** (Step 5)
-7. **Iniciar outreach** (Step 6)
+1. **Completar trigger Cloud Build** (service account configurado)
+2. **Crear VM en Google Cloud** (e2-medium, Docker)
+3. **Deploy N8N + PostgreSQL + Twenty CRM** (docker-compose)
+4. **Testear deployment automático** (git push → Cloud Run)
+5. **Configurar workflows N8N** (conectar con APIs)
+6. **Ejecutar pipeline completo** (96 empresas)
 
 ---
 

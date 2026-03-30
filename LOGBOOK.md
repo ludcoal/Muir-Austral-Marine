@@ -3,6 +3,36 @@
 
 ---
 
+## 📅 30 de Marzo, 2026
+
+### ✅ Reorganización Completa del Repositorio + GitHub + Google Cloud Setup
+
+**Hora:** 13:00 - 17:40 UTC+11:00
+
+**Completado:**
+- ✅ Limpieza repositorio: eliminadas carpetas duplicadas (python_local, cloud_run, exports, linkedin, google_sheets)
+- ✅ Reorganización: services/enrichment + services/scraping, n8n/nodes/, data/
+- ✅ CUSTOMER_INTELLIGENCE → SUBPROJECTS/
+- ✅ Servicios FastAPI creados: enrichment (Gemini+Perplexity), scraping (MundoMarítimo+ScrapeGraphAI)
+- ✅ .gitignore configurado, credenciales removidas
+- ✅ README.md actualizado con nueva estructura
+- ✅ Push a GitHub: https://github.com/ludcoal/Muir-Austral-Marine
+- ✅ Google Cloud SDK instalado, proyecto creado (muir-austral-marine)
+- ✅ APIs habilitadas: Cloud Run, Build, Secret Manager, Vertex AI, Cloud SQL
+- ✅ Secrets creados: gemini-api-key, perplexity-api-key
+- ✅ GitHub conectado a Cloud Build
+- ⏳ Configurando trigger CI/CD (en progreso)
+
+**Arquitectura:**
+- GitHub → Cloud Build → Cloud Run (CI/CD automático)
+- Microservicios: enrichment + scraping (FastAPI)
+- N8N workflows en n8n/nodes/
+- Data lake en data/
+
+**Próximo:** Testear CI/CD con push dummy, deploy automático a Cloud Run
+
+---
+
 ## 📅 20 de Marzo, 2026
 
 ### ✅ STEP 1: Extracción de Directorios - COMPLETADO
