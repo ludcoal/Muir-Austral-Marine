@@ -10,7 +10,7 @@
 **Hora:** 13:00 - 17:40 UTC+11:00
 
 **Completado:**
-- ✅ Limpieza repositorio: eliminadas carpetas duplicadas (python_local, cloud_run, exports, linkedin, google_sheets)
+- ✅ Limpieza repositorio: eliminadas carpetas duplicadas
 - ✅ Reorganización: services/enrichment + services/scraping, n8n/nodes/, data/
 - ✅ CUSTOMER_INTELLIGENCE → SUBPROJECTS/
 - ✅ Servicios FastAPI creados: enrichment (Gemini+Perplexity), scraping (MundoMarítimo+ScrapeGraphAI)
@@ -25,7 +25,12 @@
 - ✅ Service account configurado (cloud-build-sa) con permisos correctos
 - ✅ Artifact Registry repository creado (muir-services)
 - ✅ cloudbuild.yaml configurado correctamente (Artifact Registry + logging)
-- ⏳ Primer build exitoso en progreso
+- ✅ Enrichment Service deployado en Cloud Run: https://enrichment-service-y2jeow4avq-uc.a.run.app
+- ✅ VM creada (muir-vm, 34.66.208.112, e2-medium)
+- ✅ Docker + docker-compose instalados en VM
+- ✅ N8N + PostgreSQL deployados en VM: http://34.66.208.112:5678 (admin/MuirN8N2026!)
+- ✅ Firewall configurado (puertos 5678, 3000)
+- ⏳ Twenty CRM deployado pero con problemas de conexión (troubleshooting en progreso)
 
 **Arquitectura:**
 - GitHub → Cloud Build → Cloud Run (CI/CD automático)

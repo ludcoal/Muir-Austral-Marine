@@ -297,47 +297,32 @@
 ## 5.1 Google Cloud Project Setup
 
 **TÚ:**
-- `[ ]` **[!]** Instalar Google Cloud SDK (https://cloud.google.com/sdk/docs/install)
-- `[ ]` **[!]** Ejecutar `gcloud init` y login
-- `[ ]` **[!]** Crear proyecto GCP: `gcloud projects create muir-austral-marine`
-- `[ ]` **[!]** Configurar proyecto: `gcloud config set project muir-austral-marine`
-- `[ ]` **[!]** Habilitar billing en Google Cloud Console (necesario para free tier)
+- `[✓]` **[!]** Instalar Google Cloud SDK ✅
+- `[✓]` **[!]** Ejecutar `gcloud init` y login ✅
+- `[✓]` **[!]** Crear proyecto GCP: `muir-austral-marine` ✅
+- `[✓]` **[!]** Configurar proyecto ✅
+- `[✓]` **[!]** Habilitar billing en Google Cloud Console ✅
 
 **YO:**
-- `[✓]` Crear ARCHITECTURE.md (documentación técnica)
-- `[✓]` Crear GOOGLE_CLOUD_SETUP.md (guía de deploy)
-- `[✓]` Crear cloudbuild.yaml (CI/CD config)
+- `[✓]` Crear ARCHITECTURE.md (documentación técnica) ✅
+- `[✓]` Crear GOOGLE_CLOUD_SETUP.md (guía de deploy) ✅
+- `[✓]` Crear cloudbuild.yaml (CI/CD config) ✅
 
 ---
 
 ## 5.2 Habilitar APIs de Google Cloud
 
 **TÚ:**
-- `[ ]` **[!]** Ejecutar comandos para habilitar APIs:
-  ```bash
-  gcloud services enable run.googleapis.com
-  gcloud services enable cloudbuild.googleapis.com
-  gcloud services enable secretmanager.googleapis.com
-  gcloud services enable aiplatform.googleapis.com
-  gcloud services enable sqladmin.googleapis.com
-  ```
+- `[✓]` **[!]** APIs habilitadas: Cloud Run, Cloud Build, Secret Manager, Vertex AI, Artifact Registry, Compute Engine ✅
 
 ---
 
 ## 5.3 Configurar Secrets (API Keys)
 
 **TÚ:**
-- `[ ]` **[!]** Crear secret para Gemini API:
-  ```bash
-  echo -n "YOUR_GEMINI_API_KEY" | \
-    gcloud secrets create gemini-api-key --data-file=-
-  ```
-- `[ ]` **[!]** Crear secret para Perplexity API:
-  ```bash
-  echo -n "YOUR_PERPLEXITY_API_KEY" | \
-    gcloud secrets create perplexity-api-key --data-file=-
-  ```
-- `[ ]` **[!]** Dar permisos a Cloud Run para acceder secrets:
+- `[✓]` **[!]** Secret gemini-api-key creado ✅
+- `[✓]` **[!]** Secret perplexity-api-key creado ✅
+- `[✓]` **[!]** Permisos configurados para Cloud Run ✅
   ```bash
   PROJECT_NUMBER=$(gcloud projects describe muir-austral-marine --format='value(projectNumber)')
   
@@ -361,54 +346,46 @@
 - `[✓]` Testear localmente ✅
 
 **TÚ:**
-- `[ ]` **[!]** Deploy a Cloud Run:
-  ```bash
-  cd "d:\Muir Austral Repo\Muir Sudamerica\services\enrichment"
-  
-  gcloud run deploy enrichment-service \
-    --source . \
-    --platform managed \
-    --region us-central1 \
-    --allow-unauthenticated \
-    --set-secrets="GEMINI_API_KEY=gemini-api-key:latest,PERPLEXITY_API_KEY=perplexity-api-key:latest" \
-    --memory 512Mi \
-    --timeout 300
-  ```
-- `[ ]` **[!]** Copiar URL del servicio (output del comando anterior)
-- `[ ]` **[!]** Testear servicio:
-  ```bash
-  curl https://enrichment-service-xxx.run.app/
-  ```
+- `[✓]` **[!]** Enrichment Service deployado via CI/CD ✅
+- `[✓]` **[!]** URL: https://enrichment-service-y2jeow4avq-uc.a.run.app ✅
+- `[✓]` **[!]** Servicio funcionando ✅
 
 ---
 
 ## 5.5 Setup CI/CD con Cloud Build
 
 **TÚ:**
-- `[ ]` **[!]** Dar permisos a Cloud Build:
-  ```bash
-  PROJECT_NUMBER=$(gcloud projects describe muir-austral-marine --format='value(projectNumber)')
-  
-  gcloud projects add-iam-policy-binding muir-austral-marine \
-    --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
-    --role="roles/run.admin"
-  
-  gcloud projects add-iam-policy-binding muir-austral-marine \
-    --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" \
-    --role="roles/iam.serviceAccountUser"
-  ```
-- `[ ]` **[!]** Conectar GitHub a Cloud Build:
-  ```bash
-  gcloud builds triggers create github \
-    --repo-name=Muir-Austral-Repo \
-    --repo-owner=Ludo186A \
-    --branch-pattern="^main$" \
-    --build-config=cloudbuild.yaml
-  ```
-- `[ ]` **[!]** Testear CI/CD: hacer cambio en código → commit → push → verificar auto-deploy
+- `[✓]` **[!]** Service account creado (cloud-build-sa) ✅
+- `[✓]` **[!]** Permisos configurados ✅
+- `[✓]` **[!]** Artifact Registry configurado (muir-services) ✅
+- `[✓]` **[!]** GitHub conectado a Cloud Build ✅
+- `[✓]` **[!]** Trigger creado (deploy-on-push) ✅
+- `[✓]` **[!]** CI/CD testeado y funcionando ✅
 
 **YO:**
-- `[✓]` Crear cloudbuild.yaml (configuración CI/CD)
+- `[✓]` Crear cloudbuild.yaml (configuración CI/CD) ✅
+
+---
+
+## 5.6 Setup VM para N8N + Twenty CRM
+
+**TÚ:**
+- `[✓]` **[!]** VM creada (muir-vm, e2-medium, 34.66.208.112) ✅
+- `[✓]` **[!]** Docker + docker-compose instalados ✅
+- `[✓]` **[!]** N8N + PostgreSQL deployados ✅
+- `[✓]` **[!]** N8N funcionando: http://34.66.208.112:5678 (admin/MuirN8N2026!) ✅
+- `[✓]` **[!]** Firewall configurado (puertos 5678, 3000) ✅
+- `[ ]` **[!]** Twenty CRM funcionando correctamente (troubleshooting en progreso)
+
+---
+
+## 5.7 Próximos Pasos
+
+**PENDIENTE:**
+- `[ ]` Arreglar Twenty CRM (puerto 3000 no responde correctamente)
+- `[ ]` Crear primer workflow en N8N para testear Enrichment Service
+- `[ ]` Procesar 96 empresas de MundoMarítimo
+- `[ ]` Configurar backups de PostgreSQL a Cloud Storage
 
 ---
 
