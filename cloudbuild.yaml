@@ -1,5 +1,6 @@
 # Google Cloud Build - CI/CD Configuration
 # Triggered automatically on git push to main branch
+# Based on: https://cloud.google.com/build/docs/deploying-builds/deploy-cloud-run
 
 steps:
   # Build Enrichment Service
@@ -8,31 +9,32 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/$PROJECT_ID/enrichment-service:$SHORT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/muir-services/enrichment-service:$SHORT_SHA'
       - '-t'
-      - 'gcr.io/$PROJECT_ID/enrichment-service:latest'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/muir-services/enrichment-service:latest'
       - './services/enrichment'
   
-  # Push Enrichment Service
+  # Push Enrichment Service to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     id: 'push-enrichment'
     args:
       - 'push'
-      - 'gcr.io/$PROJECT_ID/enrichment-service:$SHORT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/muir-services/enrichment-service:$SHORT_SHA'
   
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'gcr.io/$PROJECT_ID/enrichment-service:latest'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/muir-services/enrichment-service:latest'
   
   # Deploy Enrichment Service to Cloud Run
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     id: 'deploy-enrichment'
+    entrypoint: gcloud
     args:
       - 'run'
       - 'deploy'
       - 'enrichment-service'
-      - '--image=gcr.io/$PROJECT_ID/enrichment-service:latest'
+      - '--image=us-central1-docker.pkg.dev/$PROJECT_ID/muir-services/enrichment-service:latest'
       - '--region=us-central1'
       - '--platform=managed'
       - '--allow-unauthenticated'
@@ -42,10 +44,10 @@ steps:
       - '--timeout=300'
       - '--max-instances=10'
 
-# Store images in Container Registry
+# Store images in Artifact Registry
 images:
-  - 'gcr.io/$PROJECT_ID/enrichment-service:$SHORT_SHA'
-  - 'gcr.io/$PROJECT_ID/enrichment-service:latest'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/muir-services/enrichment-service:$SHORT_SHA'
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/muir-services/enrichment-service:latest'
 
 # Build timeout
 timeout: 1200s
