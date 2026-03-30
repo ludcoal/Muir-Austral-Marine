@@ -433,18 +433,60 @@ gcloud run services describe enrichment-service \
 
 1. ✅ Setup Google Cloud project
 2. ✅ Deploy enrichment service
-3. ⏳ Deploy Twenty CRM
-4. ⏳ Migrar n8n a Cloud Run
-5. ⏳ Setup Vertex AI Vector Search
-6. ⏳ Configurar CI/CD completo
-7. ⏳ Integrar todo el flujo
+3. ✅ Crear VM para N8N + Twenty CRM
+4. ⏳ Instalar Docker en VM
+5. ⏳ Deploy N8N + PostgreSQL + Twenty CRM
+6. ⏳ Configurar backups PostgreSQL
+7. ⏳ Conectar N8N con APIs de Cloud Run
+8. ⏳ Testear pipeline completo
+
+---
+
+## 📦 **Recursos Creados (30/03/2026)**
+
+### **Cloud Build & CI/CD:**
+- **Trigger:** deploy-on-push (GitHub → Cloud Build automático)
+- **Service Account:** cloud-build-sa@muir-austral-marine.iam.gserviceaccount.com
+- **Permisos:** run.admin, artifactregistry.writer, logging.logWriter, storage.admin
+
+### **Artifact Registry:**
+- **Repositorio:** muir-services
+- **Location:** us-central1
+- **URL:** us-central1-docker.pkg.dev/muir-austral-marine/muir-services
+
+### **Cloud Run:**
+- **Service:** enrichment-service
+- **URL:** https://enrichment-service-y2jeow4avq-uc.a.run.app
+- **Region:** us-central1
+- **Config:** 512Mi RAM, 1 CPU, timeout 300s
+
+### **Compute Engine:**
+- **VM:** muir-vm
+- **Tipo:** e2-medium (1 vCPU, 4GB RAM)
+- **IP Externa:** 34.66.208.112
+- **IP Interna:** 10.128.0.2
+- **Zone:** us-central1-a
+- **OS:** Ubuntu 22.04 LTS
+
+### **Secret Manager:**
+- **gemini-api-key:** API key para Vertex AI/Gemini
+- **perplexity-api-key:** API key para Perplexity
+
+### **APIs Habilitadas:**
+- Cloud Run API
+- Cloud Build API
+- Artifact Registry API
+- Secret Manager API
+- Vertex AI API
+- Compute Engine API
 
 ---
 
 ## 📚 **Recursos**
 
 - [Cloud Run Docs](https://cloud.google.com/run/docs)
+- [Cloud Build Deploy to Cloud Run](https://cloud.google.com/build/docs/deploying-builds/deploy-cloud-run)
+- [Artifact Registry Docs](https://cloud.google.com/artifact-registry/docs)
 - [Vertex AI Docs](https://cloud.google.com/vertex-ai/docs)
-- [Cloud SQL Docs](https://cloud.google.com/sql/docs)
 - [Twenty CRM](https://twenty.com)
 - [n8n Self-hosted](https://docs.n8n.io/hosting/)

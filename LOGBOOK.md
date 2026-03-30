@@ -18,10 +18,14 @@
 - ✅ README.md actualizado con nueva estructura
 - ✅ Push a GitHub: https://github.com/ludcoal/Muir-Austral-Marine
 - ✅ Google Cloud SDK instalado, proyecto creado (muir-austral-marine)
-- ✅ APIs habilitadas: Cloud Run, Build, Secret Manager, Vertex AI, Cloud SQL
+- ✅ APIs habilitadas: Cloud Run, Build, Secret Manager, Vertex AI, Artifact Registry, Compute Engine
 - ✅ Secrets creados: gemini-api-key, perplexity-api-key
 - ✅ GitHub conectado a Cloud Build
-- ⏳ Configurando trigger CI/CD (en progreso)
+- ✅ Trigger CI/CD creado (deploy-on-push)
+- ✅ Service account configurado (cloud-build-sa) con permisos correctos
+- ✅ Artifact Registry repository creado (muir-services)
+- ✅ cloudbuild.yaml configurado correctamente (Artifact Registry + logging)
+- ⏳ Primer build exitoso en progreso
 
 **Arquitectura:**
 - GitHub → Cloud Build → Cloud Run (CI/CD automático)
