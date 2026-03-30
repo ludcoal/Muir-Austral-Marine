@@ -1,6 +1,6 @@
 # 📋 TASKS - MUIR AUSTRAL MARINE
 **Sistema de Email + CRM + Lead Generation**  
-**Última actualización:** 24 de Marzo, 2026 (13:00 UTC+11:00)  
+**Última actualización:** 31 de Marzo, 2026 (01:20 UTC+11:00)  
 **Dominio:** muiraustralmarine.com
 
 **📖 DOCUMENTOS DE REFERENCIA:**
@@ -41,8 +41,9 @@
 **FASE 1 - Email + CRM (MVP Básico):** 9/15 tareas  
 **FASE 2 - Presencia Digital:** 0/5 tareas  
 **FASE 3 - Sistema Extracción Leads (PRIORIDAD):** 3/6 tareas  
+**FASE 3.5 - Estrategia Multi-Fuente (NUEVO):** 3/8 tareas ✅  
 **FASE 4 - Lead Generation Automatizado:** 0/8 tareas (futuro)  
-**Total:** 12/34 tareas completadas (35%)
+**Total:** 15/37 tareas completadas (41%)
 
 ---
 
@@ -100,54 +101,55 @@
 - `[ ]` Monitorear métricas (bounce rate, spam complaints, open rate)
 - `[ ]` Evaluar herramientas de warmup (Warmup Inbox, GMass, Instantly) - opcional
 
-## 1.5 Attio CRM Setup
+## 1.5 Twenty CRM Setup (Self-hosted en Google Cloud)
 
-**Referencia:** Ver `LEAD_STRATEGY.md` para estructura de datos completa y criterios de entrada a Attio
+**Referencia:** Ver `GOOGLE_CLOUD_SETUP.md` para arquitectura completa
 
-- `[✓]` Crear workspace en Attio (ludwig@muiraustralmarine.com)
-- `[✓]` Invitar socio ([socio]@muiraustralmarine.com)
-- `[✓]` Crear listas: Leads, Companies, Deals, Interactions
-- `[ ]` Configurar atributos para cada lista (ver LEAD_STRATEGY.md para campos detallados)
-- `[ ]` Configurar vistas (Kanban, Table, Calendar, Hot Leads)
+- `[✓]` VM creada en Google Cloud (muir-vm, e2-medium)
+- `[✓]` Docker + docker-compose instalados
+- `[✓]` N8N deployado (http://34.66.208.112:5678)
+- `[✓]` Twenty CRM deployado (http://34.66.208.112:3000) ✅
+- `[ ]` Configurar atributos para Companies, Persons, Deals
+- `[ ]` Configurar vistas (Kanban, Table, Calendar)
+- `[ ]` Integrar N8N con Twenty CRM API
 
-## 1.6 Sync de Gmail con Attio
+## 1.6 Sync de Gmail con Twenty CRM
 
-**NOTA IMPORTANTE - Cómo funciona Attio:**
-- Attio NO es un cliente de email como Gmail
-- NO hay "Inbox" global en Attio
+**NOTA IMPORTANTE - Cómo funciona Twenty CRM:**
+- Twenty CRM NO es un cliente de email como Gmail
+- NO hay "Inbox" global en Twenty
 - Los emails aparecen en la timeline de cada Person/Company
 - Seguir usando Gmail para leer/gestionar emails
-- Usar Attio para ver historial organizado por contacto/empresa
+- Usar Twenty para ver historial organizado por contacto/empresa
 
 **Tareas:**
-- `[✓]` Conectar ludwig@muiraustralmarine.com a Attio
-- `[✓]` Conectar [socio]@muiraustralmarine.com a Attio
-- `[ ]` **[!]** Activar auto-creación de Companies (Settings → Email and Calendar)
+- `[ ]` Conectar Gmail API a Twenty CRM
+- `[ ]` Configurar auto-creación de Companies (Settings → Integrations)
 - `[ ]` Verificar auto-creación de People activa
-- `[ ]` Habilitar envío de emails desde Attio
+- `[ ]` Habilitar envío de emails desde Twenty
 - `[ ]` Configurar tracking de emails (opens, replies)
 - `[ ]` Decidir qué emails sincronizar (todos/solo contactos/por labels)
 - `[ ]` Configurar calendar sync (opcional)
 
-## 1.7 Automatizaciones Básicas en Attio (FUTURO)
+## 1.7 Automatizaciones Básicas en Twenty CRM (FUTURO)
 
 **Nota:** Implementar después de entender el proceso completo de incorporación de clientes  
 **Referencia:** Ver `LEAD_STRATEGY.md` para workflows detallados
 
-- `[ ]` Workflow 1: Auto-crear Deal cuando lead responde positivamente
-- `[ ]` Workflow 2: Notificación de respuesta positiva
-- `[ ]` Workflow 3: Auto-crear Interaction por email
-- `[ ]` Workflow 4: Recordatorio de follow-up (deals sin actividad 5+ días)
-- `[ ]` Workflow 5: Asignación automática round-robin
-- `[ ]` Workflow 6: Actualizar stage de Deal por palabras clave
+- `[ ]` N8N Workflow 1: Auto-crear Deal cuando lead responde positivamente
+- `[ ]` N8N Workflow 2: Notificación de respuesta positiva
+- `[ ]` N8N Workflow 3: Auto-crear Activity por email
+- `[ ]` N8N Workflow 4: Recordatorio de follow-up (deals sin actividad 5+ días)
+- `[ ]` N8N Workflow 5: Asignación automática round-robin
+- `[ ]` N8N Workflow 6: Actualizar stage de Deal por palabras clave
 
 ## 1.8 Testing Completo del Sistema
 
-- `[ ]` **[!]** Test 1: Envío/recepción emails entre Ludwig y Socio (verificar sync bidireccional en Attio)
+- `[ ]` **[!]** Test 1: Envío/recepción emails entre Ludwig y Socio (verificar sync bidireccional en Twenty)
 - `[ ]` **[!]** Test 2: Auto-creación de Company (enviar email a dominio corporativo externo)
-- `[ ]` Test 3: Workflows funcionando (si ya están configurados)
-- `[ ]` **[!]** Test 4: Envío desde Attio (verificar se envía vía Gmail y crea Interaction)
-- `[ ]` Test 5: Templates en Attio (verificar variables se reemplazan)
+- `[ ]` Test 3: N8N Workflows funcionando (si ya están configurados)
+- `[ ]` **[!]** Test 4: Envío desde Twenty (verificar se envía vía Gmail y crea Activity)
+- `[ ]` Test 5: Templates en Twenty (verificar variables se reemplazan)
 
 ## 1.9 Proceso Manual de Outreach (MVP)
 
@@ -198,9 +200,9 @@
   - **Completado:** 23 de Marzo, 2026
   - **Workflow N8N:** LinkedIn scraper con Apify integration
   - **Output:** Datos a Google Sheets Tab 3 (LinkedIn_Contacts)
-- `[ ]` **[!]** STEP 5: Importar a Attio CRM (workflow N8N automático)
+- `[ ]` **[!]** STEP 5: Importar a Twenty CRM (workflow N8N automático)
   - **Planeado:** Workflow N8N con trigger en Google Sheets Tab 4
-  - **Funcionalidad:** Auto-crear Companies + Persons en Attio
+  - **Funcionalidad:** Auto-crear Companies + Persons en Twenty CRM
 - `[ ]` **[!]** STEP 6: Iniciar outreach (emails + llamadas)
 
 ## 3.2 Sistema Escalable de Leads
@@ -209,6 +211,55 @@
 - `[ ]` Sistema de calificación de leads
 - `[ ]` Discovery continuo de fuentes (directorios, asociaciones, trade shows)
 - `[ ]` Proceso de verificación de calidad
+
+---
+
+# 🎯 FASE 3.5: ESTRATEGIA MULTI-FUENTE CON SEGMENTACIÓN (NUEVO)
+
+**Objetivo:** Expandir búsqueda de leads a múltiples fuentes coordinadas en N8N  
+**Referencia:** Ver `LEAD_STRATEGY.md` v2.0 (Estrategia Multi-Fuente con Segmentación por Nichos)
+
+## 3.5.1 Definición de Nichos y Segmentación
+
+- `[✓]` **[!]** Definir nicho principal: "Cualquier empresa que trabaje con buques" ✅
+- `[✓]` **[!]** Crear 4 divisiones (Construcción, Operación, Distribución, Institucional) ✅
+- `[✓]` **[!]** Documentar subdivisiones específicas en cada división ✅
+
+## 3.5.2 Matriz de Fuentes Multi-Canal
+
+- `[✓]` **[!]** Documentar 8 fuentes (MundoMarítimo, Google Maps, LinkedIn, Redes Sociales, etc.) ✅
+- `[✓]` **[!]** Crear tabla de automatización por fuente ✅
+- `[ ]` Implementar búsqueda en Google Maps API
+- `[ ]` Expandir búsqueda en LinkedIn (Apify Actor)
+- `[ ]` Investigar APIs de redes sociales (Meta, Twitter)
+
+## 3.5.3 Prompts de Búsqueda por Nicho
+
+- `[✓]` **[!]** Crear prompts específicos para cada división ✅
+- `[✓]` **[!]** Documentar búsquedas en Google Maps, LinkedIn, directorios ✅
+- `[ ]` Testear prompts en N8N workflows
+
+## 3.5.4 Sistema de Deduplicación (core_identifier)
+
+- `[✓]` **[!]** Documentar fórmula de core_identifier ✅
+- `[✓]` **[!]** Explicar implementación en N8N ✅
+- `[ ]` Validar core_identifier en workflow actual
+- `[ ]` Testear deduplicación con 10 leads de prueba
+
+## 3.5.5 Arquitectura del Sistema
+
+- `[✓]` **[!]** Documentar flujo: Búsqueda → Deduplicación → Enriquecimiento → LinkedIn → CRM ✅
+- `[✓]` **[!]** Crear diagrama de arquitectura ✅
+- `[ ]` Verificar N8N workflow actual (Perplexity → Google Sheets)
+- `[ ]` Implementar nuevas fuentes en N8N
+
+## 3.5.6 Próximos Pasos Inmediatos
+
+- `[ ]` **[!]** Verificar N8N workflow existente (Perplexity → Google Sheets)
+- `[ ]` **[!]** Implementar búsqueda en Google Maps API en N8N
+- `[ ]` **[!]** Expandir búsqueda en LinkedIn (Apify Actor)
+- `[ ]` Testear pipeline completo (multi-fuente + deduplicación)
+- `[ ]` Importar leads a Twenty CRM
 
 ---
 
@@ -375,14 +426,15 @@
 - `[✓]` **[!]** N8N + PostgreSQL deployados ✅
 - `[✓]` **[!]** N8N funcionando: http://34.66.208.112:5678 (admin/MuirN8N2026!) ✅
 - `[✓]` **[!]** Firewall configurado (puertos 5678, 3000) ✅
-- `[ ]` **[!]** Twenty CRM funcionando correctamente (troubleshooting en progreso)
+- `[✓]` **[!]** Twenty CRM funcionando: http://34.66.208.112:3000 ✅
 
 ---
 
 ## 5.7 Próximos Pasos
 
 **PENDIENTE:**
-- `[ ]` Arreglar Twenty CRM (puerto 3000 no responde correctamente)
+- `[✓]` Twenty CRM funcionando correctamente ✅
+- `[ ]` Configurar Twenty CRM (crear workspace, atributos, vistas)
 - `[ ]` Crear primer workflow en N8N para testear Enrichment Service
 - `[ ]` Procesar 96 empresas de MundoMarítimo
 - `[ ]` Configurar backups de PostgreSQL a Cloud Storage
@@ -683,5 +735,5 @@
 
 ---
 
-**Última actualización:** 20 de Marzo, 2026  
-**Próxima revisión:** Después de ejecutar FASE 3 (Pipeline de extracción)
+**Última actualización:** 31 de Marzo, 2026 (01:20 UTC+11:00)  
+**Próxima revisión:** Después de implementar búsqueda en Google Maps API

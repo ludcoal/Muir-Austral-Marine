@@ -30,7 +30,7 @@
 - ✅ Docker + docker-compose instalados en VM
 - ✅ N8N + PostgreSQL deployados en VM: http://34.66.208.112:5678 (admin/MuirN8N2026!)
 - ✅ Firewall configurado (puertos 5678, 3000)
-- ⏳ Twenty CRM deployado pero con problemas de conexión (troubleshooting en progreso)
+- ✅ Twenty CRM deployado y funcionando: http://34.66.208.112:3000
 
 **Arquitectura:**
 - GitHub → Cloud Build → Cloud Run (CI/CD automático)
@@ -317,4 +317,42 @@ Creada estructura centralizada con 5 tabs:
 
 ---
 
-**Última actualización:** 23 de Marzo, 2026, 12:56 UTC+11:00
+---
+
+## 📅 31 de Marzo, 2026
+
+### ✅ Estrategia Multi-Fuente con Segmentación por Nichos - DOCUMENTADA
+
+**Hora:** 01:20 UTC+11:00
+
+**Completado:**
+- ✅ Actualizado `LEAD_STRATEGY.md` v2.0 con estrategia multi-fuente
+- ✅ Definido nicho principal: "Cualquier empresa que trabaje con buques"
+- ✅ Creadas 4 divisiones: Construcción/Reparación, Operación/Gestión, Distribución/Suministro, Institucional
+- ✅ Documentada matriz de 8 fuentes (MundoMarítimo, Google Maps, LinkedIn, Redes Sociales, etc.)
+- ✅ Creados prompts de búsqueda específicos por nicho
+- ✅ Documentado sistema de deduplicación con `core_identifier`
+- ✅ Actualizado `TASKS.md` con FASE 3.5 (Estrategia Multi-Fuente)
+- ✅ Actualizado logbook
+
+**Arquitectura Documentada:**
+- Búsqueda Multi-Fuente → N8N Orquestación → Google Sheets → Twenty CRM → Outreach
+- Deduplicación automática con core_identifier (nombre normalizado + código país)
+- Flujo de 6 fases: Búsqueda → Deduplicación → Enriquecimiento → LinkedIn → CRM → Outreach
+
+**Próximos Pasos:**
+1. Verificar N8N workflow actual (Perplexity → Google Sheets)
+2. Implementar búsqueda en Google Maps API en N8N
+3. Expandir búsqueda en LinkedIn (Apify Actor)
+4. Testear pipeline completo (multi-fuente + deduplicación)
+5. Importar leads a Twenty CRM
+
+**Notas:**
+- Sistema escalable y flexible
+- Fácil agregar nuevas fuentes sin modificar flujo central
+- Métricas claras para medir efectividad por fuente y nicho
+- Documentación completa para implementación técnica
+
+---
+
+**Última actualización:** 31 de Marzo, 2026, 01:20 UTC+11:00
