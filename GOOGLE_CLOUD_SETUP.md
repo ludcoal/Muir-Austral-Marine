@@ -434,11 +434,13 @@ gcloud run services describe enrichment-service \
 1. ✅ Setup Google Cloud project
 2. ✅ Deploy enrichment service
 3. ✅ Crear VM para N8N + Twenty CRM
-4. ⏳ Instalar Docker en VM
-5. ⏳ Deploy N8N + PostgreSQL + Twenty CRM
-6. ⏳ Configurar backups PostgreSQL
-7. ⏳ Conectar N8N con APIs de Cloud Run
-8. ⏳ Testear pipeline completo
+4. ✅ Instalar Docker en VM
+5. ✅ Deploy N8N + PostgreSQL + Twenty CRM
+6. ⏳ Configurar Twenty CRM (workspace, atributos, vistas)
+7. ⏳ Crear workflows en N8N
+8. ⏳ Procesar 96 empresas de MundoMarítimo
+9. ⏳ Configurar backups PostgreSQL
+10. ⏳ Testear pipeline completo
 
 ---
 
@@ -467,6 +469,8 @@ gcloud run services describe enrichment-service \
 - **IP Interna:** 10.128.0.2
 - **Zone:** us-central1-a
 - **OS:** Ubuntu 22.04 LTS
+- **N8N:** http://34.66.208.112:5678 (admin/MuirN8N2026!)
+- **Twenty CRM:** http://34.66.208.112:3000
 
 ### **Secret Manager:**
 - **gemini-api-key:** API key para Vertex AI/Gemini
