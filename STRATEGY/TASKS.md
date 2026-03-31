@@ -436,9 +436,11 @@
 **PENDIENTE:**
 - `[✓]` Twenty CRM funcionando correctamente ✅
 - `[✓]` N8N migrado a Google VM ✅
-- `[ ]` Crear schema PostgreSQL para leads (migrar de Google Sheets)
+- `[✓]` Schema PostgreSQL para leads creado ✅
+- `[ ]` Completar workflow N8N: Perplexity → Parser → Switch → UPDATE PostgreSQL
+- `[ ]` Workflow N8N: LinkedIn Apify para leads "ready"
+- `[ ]` Diseñar sistema de scraper inteligente con agente/pipeline AI
 - `[ ]` Configurar Twenty CRM (crear workspace, atributos, vistas)
-- `[ ]` Crear workflows N8N para sync PostgreSQL ↔ Twenty CRM
 - `[ ]` Procesar 96 empresas de MundoMarítimo
 - `[ ]` Configurar backups de PostgreSQL a Cloud Storage
 
@@ -716,6 +718,92 @@
 - `[ ]` Definir estrategia de recontacto
 - `[ ]` Crear templates personalizados
 - `[ ]` Crear workflow N8N para envío
+
+---
+
+# 🤖 FASE 7: SISTEMA DE SCRAPER INTELIGENTE (FUTURO)
+
+## 7.1 Arquitectura del Sistema
+
+**Objetivo:** Sistema adaptable de scraping que combine velocidad de scrapers tradicionales con inteligencia de IA para manejar múltiples fuentes de leads.
+
+### **Componentes:**
+
+1. **Scraper Tradicional (BeautifulSoup):**
+   - Rápido y gratis
+   - Para sitios con estructura conocida y estable
+   - Ejemplo: MundoMarítimo (ya implementado)
+
+2. **Scraper con IA (ScrapeGraphAI):**
+   - Adaptable a cambios de estructura
+   - Para sitios nuevos o desconocidos
+   - Usa LLM para entender y extraer datos
+
+3. **Agente Coordinador/Pipeline AI:**
+   - Decide qué tipo de scraper usar
+   - Aprende de éxitos/fallos
+   - Genera código BeautifulSoup automáticamente
+   - Monitorea cambios en sitios web
+
+### **Pipeline Propuesto:**
+
+```
+Nueva fuente de leads
+    ↓
+Agente Coordinador analiza sitio
+    ↓
+¿Estructura conocida? 
+    → SÍ: Usar scraper tradicional (rápido)
+    → NO: Usar IA para analizar
+    ↓
+IA genera código BeautifulSoup
+    ↓
+Guardar código generado
+    ↓
+Próximas veces: usar código generado (rápido)
+    ↓
+Monitor detecta cambios → Re-analizar con IA
+```
+
+## 7.2 Tareas
+
+**DISEÑO:**
+- `[ ]` Definir arquitectura del agente coordinador
+- `[ ]` Diseñar sistema de aprendizaje (guardar patrones exitosos)
+- `[ ]` Crear biblioteca de scrapers generados
+
+**IMPLEMENTACIÓN:**
+- `[ ]` Crear agente coordinador en N8N o Python
+- `[ ]` Integrar ScrapeGraphAI para análisis inicial
+- `[ ]` Sistema de generación automática de código BeautifulSoup
+- `[ ]` Monitor de cambios en sitios web
+
+**INTEGRACIÓN:**
+- `[ ]` Conectar con PostgreSQL (raw_data)
+- `[ ]` Workflow N8N para trigger automático
+- `[ ]` Dashboard de monitoreo de scrapers
+
+## 7.3 Estrategia de Búsqueda Continua
+
+**Objetivo:** Sistema autónomo que busca, enriquece y actualiza leads constantemente.
+
+**Componentes:**
+- Scraper inteligente (adaptable)
+- Enrichment con Perplexity
+- Búsqueda LinkedIn con Apify
+- Actualización automática en PostgreSQL
+- Sync con Twenty CRM
+
+**Workflow Completo:**
+```
+Scraper → raw_data → Perplexity → Parser → Switch
+    ↓                                          ↓
+LinkedIn Ready → Apify → enriched_leads → Twenty CRM
+    ↓
+Partial → Re-enrichment queue
+    ↓
+Not Found → not_found table
+```
 
 ---
 

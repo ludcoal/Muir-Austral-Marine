@@ -353,9 +353,133 @@ ORDER BY created_at DESC;
 
 ---
 
+---
+
+### 16. INSERT related companies (leads descubiertas por Perplexity)
+
+**Code Node para parsear:**
+```javascript
+const relatedCompanies = $json.related_companies || [];
+const originalPais = $('Postgres Trigger').item.json.pais || 'unknown';
+
+if (!Array.isArray(relatedCompanies) || relatedCompanies.length === 0) {
+  return [];
+}
+
+function generateCoreIdentifier(name, country) {
+  if (!name) return null;
+  const cleaned = name.toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, ' ').trim().replace(/\s+/g, '_');
+  return `${cleaned}_${country.toUpperCase()}`;
+}
+
+const companies = relatedCompanies.map(company => {
+  const name = typeof company === 'string' ? company : (company.name || company.business_name || '');
+  const coreIdentifier = generateCoreIdentifier(name, originalPais);
+  return {
+    nombre: name,
+    direccion: '',
+    telefono: '',
+    pais: originalPais,
+    ciudad: '',
+    core_identifier: coreIdentifier,
+    status: 'pending'
+  };
+}).filter(c => c.nombre && c.core_identifier);
+
+return companies;
+```
+
+**PostgreSQL (Loop Over Items):**
+```sql
+INSERT INTO raw_data (nombre, direccion, telefono, pais, ciudad, core_identifier, status)
+VALUES (
+    '{{$json["nombre"]}}',
+    '',
+    '',
+    '{{$json["pais"]}}',
+    '',
+    '{{$json["core_identifier"]}}',
+    'pending'
+)
+ON CONFLICT (core_identifier) DO NOTHING
+RETURNING id, nombre, core_identifier;
+```
+
+---
+
+### 17. INSERT tracking de costos (Perplexity API)
+
+```sql
+INSERT INTO api_usage (
+    service,
+    model,
+    prompt_tokens,
+    completion_tokens,
+    total_tokens,
+    estimated_cost_usd,
+    raw_data_id,
+    metadata
+)
+VALUES (
+    'perplexity',
+    '{{$json["model"]}}',
+    {{$json["usage"]["prompt_tokens"]}},
+    {{$json["usage"]["completion_tokens"]}},
+    {{$json["usage"]["total_tokens"]}},
+    ({{$json["usage"]["total_tokens"]}} * 0.000001),
+    {{$json["raw_data_id"]}},
+    '{{JSON.stringify($json["usage"])}}'::jsonb
+);
+```
+
+**Costo estimado:** $1 por 1M tokens (Perplexity)
+
+---
+
+### 18. Ver costos totales por servicio
+
+```sql
+SELECT 
+    service,
+    model,
+    COUNT(*) as total_calls,
+    SUM(total_tokens) as total_tokens,
+    SUM(estimated_cost_usd) as total_cost_usd,
+    AVG(total_tokens) as avg_tokens_per_call,
+    MIN(created_at) as first_call,
+    MAX(created_at) as last_call
+FROM api_usage
+WHERE created_at >= NOW() - INTERVAL '30 days'
+GROUP BY service, model
+ORDER BY total_cost_usd DESC;
+```
+
+---
+
+### 19. Ver costos por lead individual
+
+```sql
+SELECT 
+    r.nombre,
+    r.core_identifier,
+    a.service,
+    a.total_tokens,
+    a.estimated_cost_usd,
+    a.created_at
+FROM api_usage a
+JOIN raw_data r ON a.raw_data_id = r.id
+WHERE r.core_identifier = 'NOMBRE_EMPRESA_PAIS'
+ORDER BY a.created_at DESC;
+```
+
+---
+
 ## 🚀 PRÓXIMOS PASOS
 
 1. Crear workflows en N8N usando estas queries
 2. Testear con 1 lead manual
 3. Procesar las 96 empresas de MundoMarítimo
-4. Configurar automatizaciones de contacto inteligente
+4. Monitorear costos de API en tiempo real
+5. Configurar automatizaciones de contacto inteligente
