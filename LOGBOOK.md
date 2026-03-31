@@ -31,6 +31,7 @@
 - ✅ N8N + PostgreSQL deployados en VM: http://34.66.208.112:5678 (admin/MuirN8N2026!)
 - ✅ Firewall configurado (puertos 5678, 3000)
 - ✅ Twenty CRM deployado y funcionando: http://34.66.208.112:3000
+- ✅ N8N migrado desde Hostinger a Google VM (20 workflows, 27 credentials)
 
 **Arquitectura:**
 - GitHub → Cloud Build → Cloud Run (CI/CD automático)
@@ -38,7 +39,7 @@
 - N8N workflows en n8n/nodes/
 - Data lake en data/
 
-**Próximo:** Testear CI/CD con push dummy, deploy automático a Cloud Run
+**Próximo:** Crear schema PostgreSQL para leads, migrar de Google Sheets a PostgreSQL
 
 ---
 

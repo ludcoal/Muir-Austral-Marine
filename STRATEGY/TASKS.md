@@ -425,6 +425,7 @@
 - `[✓]` **[!]** Docker + docker-compose instalados ✅
 - `[✓]` **[!]** N8N + PostgreSQL deployados ✅
 - `[✓]` **[!]** N8N funcionando: http://34.66.208.112:5678 (admin/MuirN8N2026!) ✅
+- `[✓]` **[!]** N8N migrado desde Hostinger (20 workflows, 27 credentials) ✅
 - `[✓]` **[!]** Firewall configurado (puertos 5678, 3000) ✅
 - `[✓]` **[!]** Twenty CRM funcionando: http://34.66.208.112:3000 ✅
 
@@ -434,8 +435,10 @@
 
 **PENDIENTE:**
 - `[✓]` Twenty CRM funcionando correctamente ✅
+- `[✓]` N8N migrado a Google VM ✅
+- `[ ]` Crear schema PostgreSQL para leads (migrar de Google Sheets)
 - `[ ]` Configurar Twenty CRM (crear workspace, atributos, vistas)
-- `[ ]` Crear primer workflow en N8N para testear Enrichment Service
+- `[ ]` Crear workflows N8N para sync PostgreSQL ↔ Twenty CRM
 - `[ ]` Procesar 96 empresas de MundoMarítimo
 - `[ ]` Configurar backups de PostgreSQL a Cloud Storage
 
