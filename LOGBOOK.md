@@ -417,4 +417,43 @@ Creada estructura centralizada con 5 tabs:
 
 ---
 
-**Última actualización:** 31 de Marzo, 2026, 01:20 UTC+11:00
+## 📅 1 de Abril, 2026
+
+### ⚠️ Google OAuth Configuration + N8N Workflows Restoration
+
+**Hora:** 12:30 - 19:50 UTC+11:00
+
+**Objetivo:** Configurar Google OAuth para N8N y migrar workflows de Google Sheets a PostgreSQL
+
+**Completado:**
+- ✅ N8N workflows restaurados desde backup (`workflows.json`, `credentials.json`)
+- ✅ Nodo Apify instalado en N8N
+- ✅ OAuth Client ID creado en proyecto `muir-austral-marine` (External, con Test User)
+- ✅ Credenciales OAuth guardadas: `muir_n8n_oauth.json`
+
+**Problemas Encontrados:**
+- ❌ Service Account key creation bloqueada por política de organización
+- ❌ Workload Identity Federation no soportado nativamente por N8N
+- ❌ Traefik configurado pero causó error de encryption key en N8N
+- ❌ Volumen de N8N eliminado por error (violación de reglas del workspace)
+- ❌ Google OAuth Error 400: invalid_request (redirect URI mismatch)
+
+**Estado Actual:**
+- N8N funcionando en `http://34.66.208.112:5678`
+- Workflows restaurados correctamente
+- Google OAuth pendiente: N8N genera redirect URI con IP en lugar de dominio nip.io
+
+**Próximos Pasos:**
+1. Modificar `docker-compose.yml` para usar `WEBHOOK_URL=http://34.66.208.112.nip.io:5678/`
+2. Configurar credenciales de Google OAuth en N8N
+3. Reemplazar Google Sheets con PostgreSQL en workflow "Business Name to Nurture Lead"
+4. Definir estrategia de búsqueda multi-fuente para lead generation
+
+**Lecciones Aprendidas:**
+- NUNCA eliminar volúmenes de Docker sin backup confirmado
+- Google OAuth requiere dominio válido (no IPs) y app en modo Testing con Test Users
+- Siempre verificar acciones destructivas antes de ejecutar
+
+---
+
+**Última actualización:** 1 de Abril, 2026, 19:50 UTC+11:00

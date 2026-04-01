@@ -445,11 +445,18 @@
 - `[✓]` Query INSERT para `linkedin_contacts` ✅
 - `[✓]` Tracking de costos de APIs (tabla `api_usage`) ✅
 
+**COMPLETADO (01/04/2026):**
+- `[✓]` N8N workflows restaurados desde backup ✅
+- `[✓]` Nodo Apify instalado en N8N ✅
+- `[✓]` OAuth Client ID creado (External, Test User configurado) ✅
+
 **PENDIENTE:**
+- `[ ]` **[BLOQUEADO]** Configurar Google OAuth en N8N (pendiente: modificar WEBHOOK_URL a nip.io)
+- `[ ]` Reemplazar Google Sheets con PostgreSQL en workflow "Business Name to Nurture Lead"
 - `[ ]` Actualizar nombres de nodos en query INSERT linkedin_contacts (nombres en rojo)
 - `[ ]` Testear workflow completo con lead real en N8N
-- `[ ]` Workflow N8N: LinkedIn Apify para leads "ready" (completar integración)
 - `[ ]` Configurar Twenty CRM (crear workspace, atributos, vistas)
+- `[ ]` Definir estrategia de búsqueda multi-fuente para lead generation
 - `[ ]` Procesar 96 empresas de MundoMarítimo
 - `[ ]` Configurar backups de PostgreSQL a Cloud Storage
 - `[ ]` Diseñar sistema de scraper inteligente con agente/pipeline AI (Fase 7)

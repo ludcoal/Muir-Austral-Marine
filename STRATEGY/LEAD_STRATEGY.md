@@ -303,19 +303,144 @@ core_identifier = [palabra1]-[palabra2]-[código_país]
 
 ---
 
+## 🤖 SISTEMA DE AGENTE COORDINADOR DE SCRAPERS
+
+### Concepto: Agente AI que Orquesta Múltiples Scrapers
+
+El sistema utiliza un **agente coordinador** en N8N que decide qué scraper usar según:
+- **Tipo de fuente** (directorio, sitio web desconocido, API)
+- **Nicho objetivo** (astilleros, operadores, distribuidores)
+- **Región/país** (Chile, Argentina, Brasil, etc.)
+
+### Tipos de Scrapers Disponibles
+
+#### **1. Apify Actors (Scrapers Inteligentes)**
+- **Google Maps Scraper** - Búsqueda geolocalizada por nicho + ciudad
+- **LinkedIn Company Scraper** - Extracción de empresas y contactos
+- **Web Scraper** - Scraping inteligente de sitios web estructurados
+- **Directorio Scraper** - Extracción de directorios marítimos especializados
+
+**Ventajas:**
+- ✅ Manejo automático de paginación
+- ✅ Bypass de anti-scraping
+- ✅ Extracción estructurada de datos
+- ✅ Escalable y confiable
+
+#### **2. ScrapeGraph AI (Scraper Adaptativo)**
+- **Uso:** Sitios web desconocidos o complejos
+- **Tecnología:** AI-powered scraping con LLMs
+- **Capacidad:** Se adapta automáticamente a estructura de página
+
+**Ventajas:**
+- ✅ No requiere conocer estructura HTML
+- ✅ Extrae información relevante automáticamente
+- ✅ Ideal para sitios dinámicos o cambiantes
+
+#### **3. Scrapers Simples (BeautifulSoup/Cheerio)**
+- **Uso:** Sitios web simples y estáticos
+- **Tecnología:** Parsing directo de HTML
+- **Ejemplos:** Directorios básicos, páginas de contacto
+
+**Ventajas:**
+- ✅ Rápido y eficiente
+- ✅ Bajo costo computacional
+- ✅ Fácil de mantener
+
+### Arquitectura del Agente Coordinador
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│           AGENTE COORDINADOR (N8N Code Node)                │
+├─────────────────────────────────────────────────────────────┤
+│                                                               │
+│  Input: [Nicho, País, Fuente]                               │
+│  Decisión: ¿Qué scraper usar?                               │
+│                                                               │
+│  IF fuente == "Google Maps" → Apify Google Maps Actor       │
+│  IF fuente == "LinkedIn" → Apify LinkedIn Actor             │
+│  IF fuente == "Directorio conocido" → Scraper Simple        │
+│  IF fuente == "Sitio desconocido" → ScrapeGraph AI          │
+│                                                               │
+└─────────────────────────────────────────────────────────────┘
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│              SUB-WORKFLOWS POR SCRAPER                       │
+├─────────────────────────────────────────────────────────────┤
+│                                                               │
+│  Workflow 1: Apify Google Maps                              │
+│  Workflow 2: Apify LinkedIn                                 │
+│  Workflow 3: ScrapeGraph AI                                 │
+│  Workflow 4: Scraper Simple (MundoMarítimo)                 │
+│                                                               │
+└─────────────────────────────────────────────────────────────┘
+                           ↓
+┌─────────────────────────────────────────────────────────────┐
+│              POSTGRESQL RAW_DATA                             │
+├─────────────────────────────────────────────────────────────┤
+│                                                               │
+│  Todas las leads → raw_data table                           │
+│  Sistema de matching inteligente (deduplicación)            │
+│  Enrichment con Perplexity                                  │
+│                                                               │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Flujo de Decisión del Agente
+
+```javascript
+// Pseudo-código del agente coordinador
+function decideScraper(source, nicho, pais) {
+  if (source === "Google Maps") {
+    return "apify-google-maps-actor";
+  }
+  
+  if (source === "LinkedIn") {
+    return "apify-linkedin-actor";
+  }
+  
+  if (source === "MundoMaritimo" || source === "Directorio conocido") {
+    return "scraper-simple";
+  }
+  
+  if (source === "Sitio desconocido") {
+    return "scrapegraph-ai";
+  }
+  
+  // Default: Apify Web Scraper (inteligente)
+  return "apify-web-scraper";
+}
+```
+
+### Intake Consistente de Leads
+
+**Objetivo:** Flujo constante de leads desde múltiples fuentes
+
+**Estrategia:**
+1. **Diario:** Ejecutar scrapers de Google Maps + MundoMarítimo
+2. **Semanal:** Ejecutar scrapers de LinkedIn + directorios especializados
+3. **On-demand:** ScrapeGraph AI para sitios nuevos descubiertos
+
+**Métricas de éxito:**
+- 50+ leads nuevas por semana
+- 80%+ tasa de deduplicación exitosa
+- 60%+ leads enriquecidas con contactos
+
+---
+
 ## 🔄 WORKFLOW DE GENERACIÓN DE LEADS (ACTUALIZADO)
 
-### Fase 1: Búsqueda Multi-Fuente (Automatizada)
+### Fase 1: Búsqueda Multi-Fuente (Automatizada con Agente)
 
 ```
 Trigger: Diario (o manual)
-├─ Google Maps API → Búsquedas por nicho + país
-├─ MundoMarítimo Scraper → Extracción de directorios
-├─ LinkedIn Apify Actor → Búsqueda de empresas y contactos
-├─ Directorios especializados → Web Scraper
-└─ Redes Sociales → Manual/API (investigar)
-
-Output: Leads crudas en Google Sheets "Raw Data"
+├─ Agente Coordinador (N8N Code Node)
+│   ├─ Decide: Google Maps → Apify Google Maps Actor
+│   ├─ Decide: MundoMarítimo → Scraper Simple
+│   ├─ Decide: LinkedIn → Apify LinkedIn Actor
+│   ├─ Decide: Sitio desconocido → ScrapeGraph AI
+│   └─ Decide: Directorio → Apify Web Scraper
+│
+└─ Output: Leads crudas → PostgreSQL raw_data
 ```
 
 ### Fase 2: Deduplicación y Normalización
