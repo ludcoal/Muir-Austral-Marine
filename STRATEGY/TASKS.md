@@ -433,16 +433,26 @@
 
 ## 5.7 Próximos Pasos
 
-**PENDIENTE:**
+**COMPLETADO (31/03/2026):**
 - `[✓]` Twenty CRM funcionando correctamente ✅
 - `[✓]` N8N migrado a Google VM ✅
 - `[✓]` Schema PostgreSQL para leads creado ✅
-- `[ ]` Completar workflow N8N: Perplexity → Parser → Switch → UPDATE PostgreSQL
-- `[ ]` Workflow N8N: LinkedIn Apify para leads "ready"
-- `[ ]` Diseñar sistema de scraper inteligente con agente/pipeline AI
+- `[✓]` Sistema de matching inteligente implementado (4 niveles) ✅
+- `[✓]` Función `find_duplicate_lead()` para búsqueda jerárquica ✅
+- `[✓]` Trigger PostgreSQL para generar `core_identifier` automáticamente ✅
+- `[✓]` Queries SQL para N8N workflow (CHECK, INSERT, UPDATE) ✅
+- `[✓]` Parser LinkedIn creado (extrae nombre, email, skills, experiencia) ✅
+- `[✓]` Query INSERT para `linkedin_contacts` ✅
+- `[✓]` Tracking de costos de APIs (tabla `api_usage`) ✅
+
+**PENDIENTE:**
+- `[ ]` Actualizar nombres de nodos en query INSERT linkedin_contacts (nombres en rojo)
+- `[ ]` Testear workflow completo con lead real en N8N
+- `[ ]` Workflow N8N: LinkedIn Apify para leads "ready" (completar integración)
 - `[ ]` Configurar Twenty CRM (crear workspace, atributos, vistas)
 - `[ ]` Procesar 96 empresas de MundoMarítimo
 - `[ ]` Configurar backups de PostgreSQL a Cloud Storage
+- `[ ]` Diseñar sistema de scraper inteligente con agente/pipeline AI (Fase 7)
 
 ---
 

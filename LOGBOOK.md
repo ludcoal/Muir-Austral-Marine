@@ -43,6 +43,67 @@
 
 ---
 
+## 📅 31 de Marzo, 2026
+
+### ✅ Sistema de Matching Inteligente + Workflow N8N Completo
+
+**Hora:** 21:00 - 23:45 UTC+11:00
+
+**Completado:**
+- ✅ Scraper adaptativo ejecutado: 98 empresas extraídas de 3 páginas (MundoMarítimo)
+- ✅ Firewall PostgreSQL configurado (puerto 5432 abierto)
+- ✅ 3 leads insertadas en PostgreSQL para testing
+- ✅ Tabla `api_usage` creada para tracking de costos de APIs
+- ✅ Trigger PostgreSQL para generar `core_identifier` automáticamente
+- ✅ Sistema de matching inteligente implementado (4 niveles: exacto, parcial, fuzzy)
+- ✅ Función `find_duplicate_lead()` creada para búsqueda jerárquica de duplicados
+- ✅ Función `extract_significant_words()` para generar core_identifier consistente
+- ✅ Columnas agregadas a `raw_data`: `source`, `duplicate_count`, `last_seen_at`
+- ✅ Columnas agregadas a `enriched_leads`: `duplicate_count`, `last_seen_at`
+- ✅ Queries SQL para N8N workflow: CHECK duplicados, INSERT enriched_leads, UPDATE duplicados
+- ✅ Code Node para parsear `related_companies` de Perplexity
+- ✅ Query INSERT para `related_companies` en `raw_data` (Loop Over Items)
+- ✅ Query INSERT para tracking de costos de Perplexity API
+- ✅ TASKS.md actualizado con Fase 7: Sistema de Scraper Inteligente
+- ✅ POSTGRESQL_QUERIES.md actualizado con 19 queries listas para N8N
+- ✅ Parser LinkedIn creado para extraer perfiles (nombre, email, skills, experiencia, etc.)
+- ✅ Query INSERT para `linkedin_contacts` desde parser LinkedIn
+
+**Arquitectura Workflow N8N:**
+```
+Postgres Trigger (nueva lead en raw_data)
+    ↓
+CHECK duplicados: find_duplicate_lead() → 4 niveles de matching
+    ↓
+IF duplicado detectado:
+    → UPDATE raw_data (duplicate_count + 1)
+    → Volver al loop
+    ↓
+IF lead nueva:
+    → Perplexity enrichment
+    → Parser Perplexity
+    → Set Variables
+    → INSERT api_usage (tracking costos)
+    → INSERT enriched_leads (con enrichment_status)
+    → UPDATE raw_data (status = enrichment_status)
+    → Parse Related Companies
+    → INSERT related_companies en raw_data (Loop Over Items)
+    → Switch por enrichment_status:
+        → LinkedIn Ready: Apify LinkedIn → Parse LinkedIn → INSERT linkedin_contacts
+        → Partial: Continuar loop
+        → Not Found: Continuar loop
+```
+
+**Archivos Creados/Modificados:**
+- `smart_matching.sql` - Sistema de matching inteligente (funciones + triggers)
+- `POSTGRESQL_QUERIES.md` - 19 queries listas para N8N
+- `TASKS.md` - Fase 7 documentada
+- `LOGBOOK.md` - Este registro
+
+**Próximo:** Testear workflow completo con lead real en N8N
+
+---
+
 ## 📅 20 de Marzo, 2026
 
 ### ✅ STEP 1: Extracción de Directorios - COMPLETADO
