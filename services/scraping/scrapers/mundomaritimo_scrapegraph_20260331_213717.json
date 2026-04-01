@@ -1,0 +1,617 @@
+[
+  {
+    "page": 0,
+    "url": "https://mundomaritimo.cl/empresas/listado?idCategoria=5&page=0",
+    "data": {
+      "companies": [
+        {
+          "nombre": "Ailinco Naval e Industrial Chile Ltda.",
+          "direccion": "El Molino 1270 Coquimbo",
+          "telefono": "51 - 249 744",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Altamar Servicios Navales SAC",
+          "direccion": "Calle Gabriel Chariarse 880 – Of. 201, Miraflores, Lima",
+          "telefono": "51 1 - 444 1255",
+          "pais": "Perú"
+        },
+        {
+          "nombre": "Alwoplast S.A",
+          "direccion": "Camino a Niebla s/n km 8.5 Valdivia",
+          "telefono": "63 - 203 200",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Asemar Ltda.",
+          "direccion": "Esquina los perales con Pedro Aquirre Cerda S/N. Ventanas Puchuncaví",
+          "telefono": "9 - 85139190",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Asenav S.A.",
+          "direccion": "Av. España 1135 Valdivia",
+          "telefono": "63 - 2363100",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "ASMAR Planta Industrial Magallanes",
+          "direccion": "Avenida Bulnes 05275 Punta Arenas",
+          "telefono": "61 - 214151",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "ASMAR Planta Industrial Talcahuano",
+          "direccion": "Avenida Jorge Montt 250 Talcahuano",
+          "telefono": "41 - 2744000",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "ASMAR Planta Industrial Valparaíso",
+          "direccion": "Avenida Altamirano 1015 Valparaíso",
+          "telefono": "32 - 2355400",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astillero CONAV S.A.",
+          "direccion": "Av. España 979 Valdivia",
+          "telefono": "63 - 216296",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astillero Conavre Ltda.",
+          "direccion": "Camino Concon-Quintero Km 2 Quintero",
+          "telefono": "32 - 2811199",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astillero Pedro Carrasco Muñoz",
+          "direccion": "Schuyler 338, San Vicente. Talcahuano",
+          "telefono": "412 - 542115",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astillero Regnícoli",
+          "direccion": "Boulevard de la Ribera 67 - 1646,San Fernando Buenos Aires",
+          "telefono": "5411 - 4746 5665",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "Astillero Sur",
+          "direccion": "12 de Octubre 7835/88, Mar del Plata",
+          "telefono": "54223 - 4811500",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "Astillero Tsuneishi Paraguay S.A.",
+          "direccion": "Ruta Alberdi Km 8, Villeta Villeta",
+          "telefono": "595 - 981515728",
+          "pais": "Paraguay"
+        },
+        {
+          "nombre": "Astillero y Maestranza Mello",
+          "direccion": "Avda. Latorre 1221, San Vicente Talcahuano",
+          "telefono": "41 - 2557824",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros Amado",
+          "direccion": "O Freixo-Outes, A Coruña, Galicia",
+          "telefono": "34 - 981765277",
+          "pais": "España"
+        },
+        {
+          "nombre": "Astilleros Arica S.A.",
+          "direccion": "Máximo Lira 1099 Arica",
+          "telefono": "58 - 2225043",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros Braswell International, S.A.",
+          "direccion": "Rooselvelt Avenue, Balboa, P.O. Box 3666",
+          "telefono": "507 - 232 5566",
+          "pais": "Panamá"
+        },
+        {
+          "nombre": "Astilleros Carou",
+          "direccion": "Muelle Comercial Nº2, CP 36600 Vilagarcía de Arousa",
+          "telefono": "34 986 - 565278",
+          "pais": "España"
+        },
+        {
+          "nombre": "Astilleros de Caldera",
+          "direccion": "Canal Beagle esq. Arturo Prat s/n Caldera",
+          "telefono": "52 - 315200",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros Detroit Chile S.A.",
+          "direccion": "Barón de Juras Reales 5250, Conchalí Santiago",
+          "telefono": "2 - 2440 8500",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros Inconaci Ltda",
+          "direccion": "Avenida España 800 Caleta Pichi Pelluco Puerto Montt",
+          "telefono": "65 - 317 040",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros Marco Chilena Ltda.",
+          "direccion": "Los Gobelinos 2584, Renca Santiago",
+          "telefono": "2 - 27824400",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros Mestrina S.A.",
+          "direccion": "Chubut 1815 Tigre, Provincia de Buenos Aires",
+          "telefono": "5411 - 47490276",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "Astilleros Muñoz y Carrasco Ltda.",
+          "direccion": "Av. España 390 Talcahuano",
+          "telefono": "41 - 542115",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros Nacionales S.A.",
+          "direccion": "Roberto Pretot 143 Santiago",
+          "telefono": "2 - 2696 0908",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros Neumáticos BIM",
+          "direccion": "French 65, San Fernando 1646 Buenos Aires",
+          "telefono": "5411 - 4746 0089",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "Astilleros Servel Ltda.",
+          "direccion": "Regimiento Coquimbo 230 Coquimbo",
+          "telefono": "51 - 327 771",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros SPI S.A.",
+          "direccion": "Av. Prefectura Naval Argentina 772 Mar del Plata",
+          "telefono": "549 - 223-4809480",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "Astilleros Tenglo Ltda.",
+          "direccion": "Camino Chinquihue s/n Puerto Montt",
+          "telefono": "65 - 256542",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros Vergara S.A.",
+          "direccion": "Camino Chinquihue s/n Puerto Montt",
+          "telefono": "65 - 259524",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros y Maestranza Skorpios S.A.",
+          "direccion": "Camino Chinquihue Km.6 Puerto Montt",
+          "telefono": "65 - 255061",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros y Servicios Navales Ltda. (ASENAV)",
+          "direccion": "Cerro El Plomo 5855, of 507, Las condes Santiago",
+          "telefono": "2 - 22741515",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astilleros-Varaderos Canal Haverbeck Ltda.",
+          "direccion": "Arica 2500, Valdivia",
+          "telefono": "63 - 224333",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Astinave",
+          "direccion": "Vacas Galindo y Viveros. Junto a la Primera Zona Naval, Guayaquil",
+          "telefono": "593 4 - 244 9656",
+          "pais": "Ecuador"
+        },
+        {
+          "nombre": "Astisur",
+          "direccion": "Calle 25, Avenida 46, Cienfuegos, Cuba",
+          "telefono": "04 32 - 519735",
+          "pais": "Cuba"
+        },
+        {
+          "nombre": "Astyserv Ltda.",
+          "direccion": "Teniente Merino 536 Puerto Aysén",
+          "telefono": "67 - 332688",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Bormen Ltda",
+          "direccion": "Phillipi 541 Valparaiso",
+          "telefono": "32 - 3191112",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Bulgarian Ship Hydrodynamics Centre (BSHC)",
+          "direccion": "PO Box 58, 9003 Varna",
+          "telefono": "359 52 - 2776390",
+          "pais": "Bulgaria"
+        },
+        {
+          "nombre": "Cerenav Shipyard Pemex Logística",
+          "direccion": "Carretera a la Barra, S/N, puerta 12, C. P. 89540 Madero, Tamps.",
+          "telefono": "52 229 - 9894600",
+          "pais": "México"
+        },
+        {
+          "nombre": "Cheoy Lee Shipyards",
+          "direccion": "89-91 HIng Wah Street West, Lai Chi Kok. Kowloon. Hong Kong",
+          "telefono": "852 - 23076333",
+          "pais": "China"
+        },
+        {
+          "nombre": "CIE SA-Astillero Chaco Paraguayo SA",
+          "direccion": "Campo Via y los Arbolitos Luque",
+          "telefono": "595 - 21642850",
+          "pais": "Paraguay"
+        },
+        {
+          "nombre": "Del Mar Marine Corp.",
+          "direccion": "8345 NW 66th St # 6169 Miami, FL",
+          "telefono": "1 206 - 2036270",
+          "pais": "Estados Unidos"
+        },
+        {
+          "nombre": "Detroit Chile S.A.",
+          "direccion": "Barón de Juras Reales 5250, Conchalí Santiago",
+          "telefono": "2 - 24408500",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Empresa Constructora Contex Ltda.",
+          "direccion": "Av Américo Vespucio 1963, Huechuraba Santiago",
+          "telefono": "2 - 24620730",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Ferrosur Ltda.",
+          "direccion": "Camino Chinquihue s/n Puerto Montt",
+          "telefono": "65 - 250440",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Fibrogen",
+          "direccion": "Las Talaveras 13 B, Maipu Santiago",
+          "telefono": "2 - 25371642",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Fibronaval",
+          "direccion": "General Lagos 1049 Valdivia",
+          "telefono": "63 - 2210869",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Fluvimar Reparaciones Navales S.A.",
+          "direccion": "Cortada Mangrullo 5059, Rosario, Argentina",
+          "telefono": "54 341 - 4622756",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "GRUFASA - Grupo Fanjul, S.A.",
+          "direccion": "Apdo. Correos, 316 43080 Tarragona",
+          "telefono": "34 - 977542899",
+          "pais": "España"
+        }
+      ]
+    },
+    "timestamp": "2026-03-31T21:35:52.458901"
+  },
+  {
+    "page": 1,
+    "url": "https://mundomaritimo.cl/empresas/listado?idCategoria=5&page=1",
+    "data": {
+      "companies": [
+        {
+          "nombre": "Hutchinson Ports TNG",
+          "direccion": "Blvd. Jesús Reyes Heroles No.53, Col. Centro CP.92800, Tuxpan Veracruz",
+          "telefono": "52 - 229 1610307",
+          "pais": "México"
+        },
+        {
+          "nombre": "Ingenieria NISSI SpA",
+          "direccion": "Mauricio de la Parra 1705 Puerto Montt",
+          "telefono": "56 - 940032899",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Innus Ltda.",
+          "direccion": "Arlegui 160, Of. 5 Viña del Mar",
+          "telefono": "32 - 2477384",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "KINETEC Ltda.",
+          "direccion": "Av. Ramón Picarte 4215 Valdivia",
+          "telefono": "63 - 273713",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "KSB Chile S.A.",
+          "direccion": "Av.Las Esteras Sur 2851 Santiago",
+          "telefono": "2 - 26778300",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Lechcobi Maritime Solutions",
+          "direccion": "Tijuana BC Tijuana",
+          "telefono": "1 619 - 769-1173",
+          "pais": "México"
+        },
+        {
+          "nombre": "Lung Yun Casting Co Ltd",
+          "direccion": "20, Gong-3 Rd., Jih Nan Li, Tachia Town, Taichung County",
+          "telefono": "886 4 - 26817600",
+          "pais": "Taiwán"
+        },
+        {
+          "nombre": "Maestranza Chilena Ltda",
+          "direccion": "Parcela A 8 parque Industrial Apiasmontt Camino Tepual Puerto Montt",
+          "telefono": "65 - 430837",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Maestranza Iquique S.A",
+          "direccion": "Estado 337 Of.10 Santiago",
+          "telefono": "2 - 26337066",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Maestranza Mavelec",
+          "direccion": "Pozo Almonte 561, Casa 21 Puerto Montt",
+          "telefono": "65 - 2343464",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Maestranza Nachipa S.A.",
+          "direccion": "Phillippi 498 Valparaíso",
+          "telefono": "32 - 2660383",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Maestranza Naval S.A.",
+          "direccion": "Canal Beagle Esq. Arturo Prat s/n Caldera",
+          "telefono": "52 - 315200",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Maestranza San Vicente Ltda.",
+          "direccion": "Juan Macaya 64, San Vicente Talcahuano",
+          "telefono": "41 - 557316",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Maestranza Tecnomac S.A.",
+          "direccion": "Phillippi 48 Valparaíso",
+          "telefono": "32 - 2490465",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Maestranza y Astilleros Constitución Ltda.",
+          "direccion": "Av.El Dique 1530 Constitución",
+          "telefono": "71 - 672901",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Majestic Construcciones y Servicios S.A.",
+          "direccion": "Don Bosco 351 Bahia Blanca",
+          "telefono": "54 - 911 58689154",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "Marco Peruana S.A",
+          "direccion": "Av. Sáenz Peña 1439 Callao Lima, Perú",
+          "telefono": "51 1 - 4294978",
+          "pais": "Perú"
+        },
+        {
+          "nombre": "Maritec Ltda",
+          "direccion": "Av. Freire 1122 Quilpué Valparaíso",
+          "telefono": "32 - 2493818",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "MD Engine & Energy",
+          "direccion": "Santa Elena 1433 Santiago",
+          "telefono": "2 - 25502000",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Mello Ltda.",
+          "direccion": "La Torre 1221 Talcahuano",
+          "telefono": "41 - 2557824",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Mitzy Hana Tokyo Co .Ltda",
+          "direccion": "Souther 72, Chorrillos Valparaíso",
+          "telefono": "32 - 2677610",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "MYP Soluciones Navales e Industriales SpA",
+          "direccion": "Los Pasionistas 1781 Villa Alemana",
+          "telefono": "56 - 9644 99201",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Nautatec Chile Ltda",
+          "direccion": "Pérez Rosales 642, Of 23 Valdivia",
+          "telefono": "63 - 249010",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Nautic RM",
+          "direccion": "Pol. Ind. Ullà - Subsector 1 - 17140 ULLÀ (GERONA) ESPANA",
+          "telefono": "34 972 - 750496",
+          "pais": "España"
+        },
+        {
+          "nombre": "Naval Martins",
+          "direccion": "Salta 1500 Rosario",
+          "telefono": "54 - 915 341 3191926",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "Navalsul Ltda.",
+          "direccion": "Rua Dona Francisca Nº 7950, Joinville, Santa Catarina, Brazil",
+          "telefono": "055 47 - 4351329",
+          "pais": "Brasil"
+        },
+        {
+          "nombre": "NavalWorth",
+          "direccion": "Mendez Nuñez, 62-1,36900 Marín",
+          "telefono": "34 - 635222555",
+          "pais": "España"
+        },
+        {
+          "nombre": "Navamar",
+          "direccion": "Volcán Antuco N° 930, Puerto Montt",
+          "telefono": "65 - 274394",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Ocean Tech S.A.",
+          "direccion": "Ruta 5 Norte, Km 434 Coquimbo",
+          "telefono": "51 - 395430",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Port and Services S.A.",
+          "direccion": "Muelle 3 Colon, Calle 5 y Avenida del Frente. Colón",
+          "telefono": "507 - 2361144",
+          "pais": "Panamá"
+        },
+        {
+          "nombre": "Proios S.A.",
+          "direccion": "Ministro Brin 774-776, Caba1158 Buenos Aires",
+          "telefono": "54 11 - 43078799",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "Samwon Tech.",
+          "direccion": "59-4 Maeri, Sangdongmyeon, Gimhae, Korea",
+          "telefono": "55 82 - 3270150",
+          "pais": "Corea"
+        },
+        {
+          "nombre": "SeaAlum Ltda",
+          "direccion": "Camino a Pargua Km 8 Puerto Montt",
+          "telefono": "65 - 237008",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Servicios Industriales de la Marina S.A. - SIMA PERÚ",
+          "direccion": "Av. Contralmirante Mora Nº 1102 Callao",
+          "telefono": "511 - 4131129",
+          "pais": "Perú"
+        },
+        {
+          "nombre": "Servicios Múltiples El Servidor",
+          "direccion": "Autopista 30 de mayo, km 12 de Haina Santo Domingo",
+          "telefono": "1 - 809 8648400",
+          "pais": "República Dominicana"
+        },
+        {
+          "nombre": "Servisur Ltda.",
+          "direccion": "Freire 172 Puerto Montt",
+          "telefono": "65 - 264468",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Siflomar Ltda.",
+          "direccion": "Urmeneta 314, Of.206 Puerto Montt",
+          "telefono": "65 - 434622",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Sitecna S.A. Puerto Montt",
+          "direccion": "Chinquihue km 8, Puerto Montt",
+          "telefono": "65 - 258297",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "SM Shipping",
+          "direccion": "8669 NW 36th St, Suite 310, FL 33166. Miami",
+          "telefono": "305 - 9611126",
+          "pais": "Estados Unidos"
+        },
+        {
+          "nombre": "Sociber Ltda.",
+          "direccion": "Blanco 1199, Piso 9 Valparaíso",
+          "telefono": "32 - 23142001",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Sociedad Comercial Tenglo",
+          "direccion": "Ñuble 210 Puerto Montt",
+          "telefono": "65 - 299990",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "STM Servicios",
+          "direccion": "Los Pellines 229 Puerto Montt",
+          "telefono": "65 - 435720",
+          "pais": "Chile"
+        },
+        {
+          "nombre": "Talleres Navales del Golfo SA de CV",
+          "direccion": "Islote de San Juan de Ulúa s/n, C.P. 91800 Veracruz",
+          "telefono": "52 - 229 9892500",
+          "pais": "México"
+        },
+        {
+          "nombre": "Tecnavin S. A.",
+          "direccion": "Chimborazo 2912 y García Goyena, esquina, Guayaquil Guayaquil",
+          "telefono": "593 - 42441022",
+          "pais": "Ecuador"
+        },
+        {
+          "nombre": "TPA Argentina",
+          "direccion": "Alvarado 3561 Mar del Plata",
+          "telefono": "54 223 - 4100470",
+          "pais": "Argentina"
+        },
+        {
+          "nombre": "Tsakos Industrias Navales",
+          "direccion": "Av. Gral. Rondeau 2023 ,CP: 11800 - Montevideo - Uruguay",
+          "telefono": "598 2 - 9248336",
+          "pais": "Uruguay"
+        }
+      ]
+    },
+    "timestamp": "2026-03-31T21:37:06.566668"
+  },
+  {
+    "page": 2,
+    "url": "https://mundomaritimo.cl/empresas/listado?idCategoria=5&page=2",
+    "data": {
+      "companies": [
+        {
+          "nombre": "Intercoastal Marine Inc.",
+          "direccion": "Obarrio, Av. Samuel Lewis con C. 55 Este. P. H. Plaza Globus.,Ciudad de Panamá",
+          "telefono": "507317 6670",
+          "pais": "Panamá"
+        },
+        {
+          "nombre": "Lobo Marine Solutions",
+          "direccion": "Sargento Silva 513,Puerto montt",
+          "telefono": "56956767347",
+          "pais": "Chile"
+        }
+      ]
+    },
+    "timestamp": "2026-03-31T21:37:17.873111"
+  }
+]

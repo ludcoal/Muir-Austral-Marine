@@ -2,12 +2,16 @@
 """
 Script para extraer datos de MundoMarítimo.cl
 Extrae: nombre, dirección, teléfono, país
+Envía directo a PostgreSQL en Google Cloud VM
 """
 
 import requests
 from bs4 import BeautifulSoup
 import csv
 import time
+import psycopg2
+from psycopg2.extras import execute_values
+import re
 
 BASE_URL = "https://mundomaritimo.cl/empresas/listado"
 PARAMS = {

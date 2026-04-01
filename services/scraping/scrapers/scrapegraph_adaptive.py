@@ -12,6 +12,9 @@ import csv
 from typing import List, Dict, Optional
 import os
 from datetime import datetime
+import psycopg2
+from psycopg2.extras import execute_values
+import re
 
 class AdaptiveWebScraper:
     """
@@ -191,6 +194,105 @@ class AdaptiveWebScraper:
             writer.writerows(rows)
         
         print(f"\n💾 {len(rows)} filas guardadas en {filename}")
+    
+    def save_to_postgres(self, data: List[Dict], flatten_key: str = None, 
+                        host: str = "34.66.208.112", database: str = "leads",
+                        user: str = "muir", password: str = "MuirPostgres2026!"):
+        """
+        Envía resultados directo a PostgreSQL.
+        
+        Args:
+            data: Lista de resultados del scraping
+            flatten_key: Si los datos están anidados, clave a aplanar (ej: "companies")
+            host: Host de PostgreSQL
+            database: Nombre de la database
+            user: Usuario de PostgreSQL
+            password: Password de PostgreSQL
+        """
+        if not data:
+            print("⚠️ No hay datos para enviar")
+            return
+        
+        # Aplanar datos si es necesario
+        rows = []
+        for item in data:
+            if flatten_key and flatten_key in item['data']:
+                for sub_item in item['data'][flatten_key]:
+                    rows.append(sub_item)
+            else:
+                rows.append(item['data'])
+        
+        if not rows:
+            print("⚠️ No hay filas para enviar")
+            return
+        
+        try:
+            # Conectar a PostgreSQL
+            conn = psycopg2.connect(
+                host=host,
+                database=database,
+                user=user,
+                password=password,
+                port=5432
+            )
+            cursor = conn.cursor()
+            
+            print(f"\n🔗 Conectado a PostgreSQL ({host})")
+            
+            inserted = 0
+            skipped = 0
+            
+            for row in rows:
+                try:
+                    # Extraer campos
+                    nombre = row.get('nombre', '')
+                    direccion = row.get('direccion', '')
+                    telefono = row.get('telefono', '')
+                    pais = row.get('pais', '')
+                    ciudad = row.get('ciudad', '')  # Opcional
+                    
+                    # Generar core_identifier
+                    nombre_clean = re.sub(r'[^a-zA-Z0-9 ]', '', nombre)
+                    nombre_clean = nombre_clean.replace(' ', '_').upper()
+                    
+                    if ciudad:
+                        ciudad_clean = re.sub(r'[^a-zA-Z0-9 ]', '', ciudad)
+                        ciudad_clean = ciudad_clean.replace(' ', '_').upper()
+                        core_identifier = f"{nombre_clean}_{ciudad_clean}_{pais.upper()}"
+                    else:
+                        core_identifier = f"{nombre_clean}_{pais.upper()}"
+                    
+                    # INSERT en raw_data
+                    cursor.execute("""
+                        INSERT INTO raw_data (nombre, direccion, telefono, pais, ciudad, core_identifier, status)
+                        VALUES (%s, %s, %s, %s, %s, %s, 'pending')
+                        ON CONFLICT DO NOTHING
+                        RETURNING id;
+                    """, (nombre, direccion, telefono, pais, ciudad, core_identifier))
+                    
+                    result = cursor.fetchone()
+                    if result:
+                        inserted += 1
+                        print(f"✅ Insertada: {nombre} ({core_identifier})")
+                    else:
+                        skipped += 1
+                        print(f"⏭️  Ya existe: {nombre}")
+                    
+                except Exception as e:
+                    print(f"❌ Error insertando {row.get('nombre', 'N/A')}: {e}")
+                    skipped += 1
+            
+            conn.commit()
+            cursor.close()
+            conn.close()
+            
+            print(f"\n📊 Resumen:")
+            print(f"   ✅ Insertadas: {inserted}")
+            print(f"   ⏭️  Omitidas: {skipped}")
+            print(f"   📝 Total procesadas: {len(rows)}")
+            
+        except Exception as e:
+            print(f"\n❌ Error conectando a PostgreSQL: {e}")
 
 
 def scrape_mundomaritimo_example():
@@ -238,7 +340,7 @@ def scrape_mundomaritimo_example():
     results = scraper.scrape_multiple_pages(
         base_url="https://mundomaritimo.cl/empresas/listado?idCategoria=5",
         prompt=prompt,
-        max_pages=10,
+        max_pages=3,  # Solo 3 páginas para test
         page_param="page",
         start_page=0,
         delay=2.0
@@ -247,16 +349,25 @@ def scrape_mundomaritimo_example():
     # Guardar resultados
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     
-    # JSON completo
+    # JSON completo (backup)
     scraper.save_to_json(
         results, 
         f"mundomaritimo_scrapegraph_{timestamp}.json"
     )
     
-    # CSV aplanado
+    # CSV aplanado (backup)
     scraper.save_to_csv(
         results,
         f"mundomaritimo_scrapegraph_{timestamp}.csv",
+        flatten_key="companies"
+    )
+    
+    # ENVIAR A POSTGRESQL (nuevo)
+    print("\n" + "=" * 60)
+    print("📤 Enviando datos a PostgreSQL...")
+    print("=" * 60)
+    scraper.save_to_postgres(
+        results,
         flatten_key="companies"
     )
     
